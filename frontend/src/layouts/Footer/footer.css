@@ -1,15 +1,17 @@
 .footer{
   padding: 2rem 1rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 .social-icons{
   display: flex;
   gap: 1.5rem;
 }
 .social-icon{
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   aspect-ratio: 1/1;
   color: var(--secondary-font-color);
 }
