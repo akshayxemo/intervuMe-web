@@ -1,0 +1,31 @@
+.feedback-sec {
+  padding: 5rem 0;
+}
+.slide {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+.slick-slider {
+  position: relative;
+}
+.slick-prev,
+.slick-prev::before {
+  position: absolute;
+  bottom: 0;
+  color: #ac9eff;
+  left: 3px;
+}
+.slick-next,
+.slick-next::before {
+  position: absolute;
+  bottom: 0;
+  color: #ac9eff;
+  right: 3px;
+}
+/* .slick-arrow {
+  display: none;
+} */
+@media (max-width: 450px) {
+}

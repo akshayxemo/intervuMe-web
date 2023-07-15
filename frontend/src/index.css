@@ -1,24 +1,30 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1rem;
   scroll-behavior: smooth;
 }
-:root{
-  --primary-font:'Poppins', sans-serif;
-  --border-light:#D9D9D9;
-  --color-yellow:#FBBC05;
-  --color-red:#EA4335;
-  --color-green:#34A853;
-  --color-blue:#4285F4;
-  --secondary-font-color:#707070;
+:root {
+  --primary-font: "Poppins", sans-serif;
+  --border-light: #d9d9d9;
+  --color-yellow: #fbbc05;
+  --color-red: #ea4335;
+  --color-green: #34a853;
+  --color-blue: #4285f4;
+  --secondary-font-color: #707070;
 }
-h1,h2,h3,h4,h5,h6,p{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0 !important;
 }
-p{
+p {
   color: var(--secondary-font-color);
 }
 a {
@@ -27,5 +33,5 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #4285F4;
+  color: #4285f4;
 }

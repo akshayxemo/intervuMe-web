@@ -1,0 +1,56 @@
+.feedback-card {
+  padding: 2rem;
+  border-radius: 5px;
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin: 0 1.5rem;
+}
+.card-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+.user-name {
+  font-size: 1.1rem;
+}
+.user-img {
+  height: 50px;
+  aspect-ratio: 1/1;
+}
+.quote-img {
+  height: 50px;
+  aspect-ratio: 1/1;
+}
+.card-body {
+  line-height: 1.5;
+  text-align: justify;
+}
+.card-info p {
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: end;
+  color: var(--color-blue);
+  text-transform: capitalize;
+}
+
+@media (max-width: 550px) {
+  .feedback-card {
+    margin: 0 0.8rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .feedback-card {
+    margin: 0 !important;
+  }
+}
