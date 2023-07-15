@@ -14,6 +14,16 @@
 .heading{
   font-size: 1.5rem;
 }
+.big-heading, .big-heading span{
+  font-size: 3rem;
+  padding-bottom: 1rem;
+  letter-spacing: -2px;
+  line-height: 1.2;
+}
+.big-desc{
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
 .flex-center-column{
   display: flex;
   flex-direction: column;
@@ -62,4 +72,39 @@
 }
 .margin-bottom-1-5rem{
   margin-bottom: 1.5rem;
+}
+.color-red{
+  color: var(--color-red);
+}
+.color-green{
+  color: var(--color-green);
+}
+.color-yellow{
+  color: var(--color-yellow);
+}
+.color-blue{
+  color: var(--color-blue);
+}
+.color-white{
+  color:#fff;
+}
+.color-gray{
+  color:var(--secondary-font-color);
+}
+.bg-black{
+  background-color: #000;
+}
+
+/* ........................................... media queries .............................................. */ 
+@media(max-width:800px){
+  .big-heading, .big-heading span{
+    font-size: 2.5rem;
+    padding-bottom: 1rem;
+    letter-spacing: -2px;
+    line-height: 1.2;
+  }
+  .big-desc{
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 }

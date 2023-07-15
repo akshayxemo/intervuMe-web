@@ -1,0 +1,36 @@
+.hero2-sec{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+.hero2-text, .hero2-img{
+  width: 50%;
+  padding: 0 1rem;
+}
+.hero2-img{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* ........................................... media queries .............................................. */
+@media (max-width:1200px) {
+  .hero2-img img{
+    width: 100%;
+  }
+}
+@media (max-width:1026px) {
+  .hero2-sec{
+    padding-top: 2rem;
+  }
+}
+@media(max-width:660px){
+  .hero2-sec{
+    flex-direction: column;
+  }
+  .hero2-text, .hero2-img{
+    width: 100%;
+    margin-bottom: 1.1rem;
+  }
+}

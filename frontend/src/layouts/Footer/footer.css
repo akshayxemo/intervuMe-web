@@ -1,0 +1,27 @@
+.footer{
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.social-icons{
+  display: flex;
+  gap: 1.5rem;
+}
+.social-icon{
+  font-size: 1.1rem;
+  aspect-ratio: 1/1;
+  color: var(--secondary-font-color);
+}
+.facebook:hover{
+  color: var(--color-green);
+}
+.twitter:hover{
+  color: var(--color-blue);
+}
+.instagram:hover{
+  color: var(--color-red);
+}
+.linkedin:hover{
+  color: var(--color-yellow);
+}

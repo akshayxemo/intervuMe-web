@@ -1,0 +1,39 @@
+.hero3-sec{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  gap: 2rem;
+}
+.hero3-text, .hero3-img{
+  flex:100%;
+  width: 100%;
+  padding: 0 1rem;
+}
+.hero3-img{
+  background-size: contain;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* ........................................... media queries .............................................. */
+@media (max-width:1200px) {
+  .hero3-img img{
+    width: 100%;
+  }
+}
+@media (max-width:1026px) {
+  .hero3-sec{
+    padding-top: 2rem;
+  }
+}
+@media(max-width:660px){
+  .hero3-sec{
+    flex-direction: column-reverse;
+  }
+  .hero3-text, .hero3-img{
+    width: 100%;
+    margin-bottom: 1.1rem;
+  }
+}
