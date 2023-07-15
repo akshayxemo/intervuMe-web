@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: 'DM Sans', sans-serif;
   font-size: 1rem;
+  scroll-behavior: smooth;
 }
 :root{
   --primary-font:'Poppins', sans-serif;

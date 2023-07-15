@@ -1,6 +1,25 @@
 .navbar{
+  position: absolute;
+  width: 100%;
+  top:0;
+  left: 0;
   padding: 1.5rem 0;
-  /* border-bottom: 1px solid var(--border-light); */
+  z-index: 1000;
+}
+.nav-sticky{
+  position: fixed;
+  width: 100%;
+  top:0;
+  left: 0;
+  background-color: #fff;
+  padding: 1rem 0;
+  z-index: 1000;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  animation: DropDown 0.3s linear;
+}
+@keyframes DropDown {
+  0%{transform: translateY(-80px);}
+  100%{transform: translateY(0);}
 }
 .nav-flex{
   display: flex;
