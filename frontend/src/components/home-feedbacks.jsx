@@ -39,17 +39,6 @@ function HomeFeedback() {
       date: "jan 24 2023",
     },
   ];
-  //   const settings = {
-  //     dots: true,
-  //     infinite: true,
-  //     speed: 400,
-  //     slidesToShow: 1,
-  //     slidesToScroll: 1,
-  //     fade: true,
-  //     autoplay: true,
-  //     autoplaySpeed: 5000,
-  //     cssEase: "linear",
-  //   };
 
   const settings = {
     dots: true,
@@ -57,6 +46,8 @@ function HomeFeedback() {
     speed: 500,
     slidesToShow: 2, // Number of cards to show in a single slide
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 768, // Adjust based on your desired breakpoint

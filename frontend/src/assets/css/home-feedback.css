@@ -12,6 +12,7 @@
 }
 .slick-prev,
 .slick-prev::before {
+  display: none;
   position: absolute;
   bottom: 0;
   color: #ac9eff;
@@ -19,6 +20,7 @@
 }
 .slick-next,
 .slick-next::before {
+  display: none;
   position: absolute;
   bottom: 0;
   color: #ac9eff;
