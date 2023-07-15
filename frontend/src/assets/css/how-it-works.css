@@ -1,0 +1,13 @@
+.how-it-works{
+  /* width: 100%; */
+  background-color: #000;
+  color: #fff;
+  padding: 3rem 0;
+}
+.how-it-works-cards{
+  padding: 2rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-evenly;
+}

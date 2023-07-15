@@ -1,6 +1,7 @@
 import "./home.css";
 import Navbar from "../../layouts/Navbar/navbar";
 import Hero from "../../components/hero";
+import HowItWorks from "../../components/how-it-works";
 function Home() {
   return (
     <>
@@ -8,6 +9,7 @@ function Home() {
         <Navbar />
         <Hero />
       </div>
+      <HowItWorks />
     </>
   );
 }
