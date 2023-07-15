@@ -34,6 +34,8 @@
 .card-body {
   line-height: 1.5;
   text-align: justify;
+  max-height: 300px;
+  overflow-y: auto;
 }
 .card-info p {
   font-size: 0.9rem;
