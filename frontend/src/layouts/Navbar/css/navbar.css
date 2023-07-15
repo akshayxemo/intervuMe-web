@@ -1,0 +1,18 @@
+.navbar{
+  padding: 1.5rem 0;
+  /* border-bottom: 1px solid var(--border-light); */
+}
+.nav-flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo{
+  width: 150px;
+}
+
+@media (max-width:300px){
+  .nav-logo{
+    width: 120px;
+  }
+}
