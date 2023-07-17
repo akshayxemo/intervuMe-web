@@ -1,5 +1,5 @@
 import "./css/user-nav.css";
-import logo from "../../assets/intervuMe-original-black-logo.svg";
+import logo from "../../assets/intervuMe-original-white-logo.svg";
 import { Link } from "react-router-dom";
 import {
   MdOutlineDashboard,

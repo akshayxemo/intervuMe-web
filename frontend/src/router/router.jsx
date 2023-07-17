@@ -1,5 +1,6 @@
 import Home from "../pages/Home/home";
-import UserDashboard from "../pages/dashboard/user-dashboard";
+import Dashboard from "../pages/Dashboard/dashboard";
+import UserDashboard from "../components/user-dashboard";
 import { createBrowserRouter } from "react-router-dom";
 
 const Router = createBrowserRouter([
@@ -13,7 +14,7 @@ const Router = createBrowserRouter([
   },
   {
     path: "/user/dashboard",
-    element: <UserDashboard />,
+    element: <Dashboard Body={<UserDashboard />} />,
   },
 ]);
 

@@ -1,12 +1,11 @@
 .user-nav {
-  width: 220px;
-  padding: 1.5rem 1rem 1.5rem 0;
+  width: 300px;
+  background-color: #081225;
+  padding: 2.5rem 1rem 1.5rem 1rem;
   min-height: 100vh;
-  border-right: 2px solid var(--border-light);
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-  position: fixed;
 }
 .logo-display {
   display: flex;
@@ -33,12 +32,10 @@
   font-weight: 400;
 }
 .nav:hover {
-  font-weight: 500;
-  color: #000;
+  color: #fff;
 }
 .nav-active {
-  font-weight: 500;
-  color: #000;
+  color: #fff;
 }
 .nav-text {
   text-transform: capitalize;

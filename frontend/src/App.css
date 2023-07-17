@@ -11,6 +11,9 @@
   width: 100%;
   padding: 0 1rem;
 }
+.container-lg-no-pd{
+  width: 100%;
+}
 .heading{
   font-size: 1.5rem;
 }

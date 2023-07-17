@@ -15,7 +15,7 @@ function FeedbackCard(props) {
         <div className="card-top">
           <div className="user">
             <img src={props.image} className="user-img" />
-            <h2 className="user-name">{props.name}</h2>
+            <h2 className="f-user-name">{props.name}</h2>
           </div>
           <img src={quote} className="quote-img" />
         </div>

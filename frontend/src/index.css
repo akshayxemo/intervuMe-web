@@ -14,6 +14,7 @@
   --color-green: #34a853;
   --color-blue: #4285f4;
   --secondary-font-color: #707070;
+  --color-dark-blue:#081225;
 }
 h1,
 h2,
@@ -22,7 +23,7 @@ h4,
 h5,
 h6,
 p {
-  margin: 0 !important;
+  margin: 0;
 }
 p {
   color: var(--secondary-font-color);
