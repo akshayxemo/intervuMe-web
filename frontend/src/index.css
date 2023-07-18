@@ -14,7 +14,7 @@
   --color-green: #34a853;
   --color-blue: #4285f4;
   --secondary-font-color: #707070;
-  --color-dark-blue:#081225;
+  --color-dark-blue: #081225;
 }
 h1,
 h2,
@@ -35,4 +35,26 @@ a {
 }
 a:hover {
   color: #4285f4;
+}
+/*............................................. Scrtoll bar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-blue);
 }

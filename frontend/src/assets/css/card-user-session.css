@@ -1,0 +1,55 @@
+.session-wrap {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  width: 100%;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+.session-wrap:last-child {
+  margin-bottom: 2rem;
+}
+.mentor-info {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: baseline;
+  margin-bottom: 0.2rem;
+}
+.mentor-name {
+  font-size: 1.2rem;
+}
+.session-time-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.session-time,
+.session-date {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--secondary-font-color);
+}
+.session-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.8rem;
+  justify-content: flex-start;
+}
+.status-color {
+  height: 10px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.separator {
+  width: 1px;
+  height: 1rem;
+  border: 1px solid var(--border-light);
+}

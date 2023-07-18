@@ -1,9 +1,9 @@
-.dashboard-body{
+.dashboard-body {
   width: 100%;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
 }
-.user-info-wrap{
+.user-info-wrap {
   padding: 2.5rem 0 1.5rem 0;
   display: flex;
   flex-direction: row;
@@ -11,61 +11,71 @@
   align-items: center;
   justify-content: space-between;
 }
-.user-image{
-  height: 70px;
+.user-image {
+  height: 60px;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  border: 3px solid var(--color-blue);
+  outline: 2px solid var(--color-blue);
+  border: 4px solid rgb(255, 255, 255);
 }
-.user-name{
+.user-name {
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -1px;
   font-family: var(--primary-font);
 }
-.performance-header{
+.performance-chart {
+  margin-bottom: 2rem;
+}
+.performance-header,
+.session-header {
   padding: 1rem;
 }
-.performance-title{
+.performance-title,
+.session-title {
   text-transform: capitalize;
   font-size: 1.5rem;
   letter-spacing: -1px;
   margin-bottom: 1.5rem;
 }
-.toolTip{
+.toolTip {
   padding: 1rem;
   background-color: var(--color-dark-blue);
   color: #fff;
   border-radius: 5px;
 }
-.tool-tip-header{
+.tool-tip-header {
   font-size: 1rem;
 }
-.tool-tip-info-wrap{
+.tool-tip-info-wrap {
   margin-top: 8px;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-.indiactor{
+.indiactor {
   width: 4px;
   height: 1rem;
   border-radius: 5px;
 }
-.tool-tip-data{
+.tool-tip-data {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
 }
-.tool-tip-data-header{
+.tool-tip-data-header {
   display: flex;
   gap: 0.8rem;
   justify-content: flex-start;
 }
-.tool-tip-info{
+.tool-tip-info {
   color: #fff;
 }
-.tool-tip-title, .tool-tip-info{
+.tool-tip-title {
+  color: rgb(135, 135, 135);
+}
+.tool-tip-title,
+.tool-tip-info {
   font-size: 0.8rem;
 }

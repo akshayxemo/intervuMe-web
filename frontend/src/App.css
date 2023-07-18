@@ -1,4 +1,4 @@
-.container-1280-width{
+.container-1280-width {
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -7,34 +7,35 @@
   position: relative;
   overflow: visible;
 }
-.container-lg{
+.container-lg {
   width: 100%;
   padding: 0 1rem;
 }
-.container-lg-no-pd{
+.container-lg-no-pd {
   width: 100%;
 }
-.heading{
+.heading {
   font-size: 1.5rem;
 }
-.big-heading, .big-heading span{
+.big-heading,
+.big-heading span {
   font-size: 3rem;
   padding-bottom: 1rem;
   letter-spacing: -2px;
   line-height: 1.2;
 }
-.big-desc{
+.big-desc {
   font-size: 1.2rem;
   line-height: 1.5;
 }
-.flex-center-column{
+.flex-center-column {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
 }
-.btn{
+.btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,12 +53,12 @@
   -moz-transition: ease-out 0.5s;
   transition: ease-out 0.5s;
 }
-.btn-transparent:hover{
+.btn-transparent:hover {
   background-color: #000;
   box-shadow: inset 400px 0 0 0 #000;
   color: #fff;
 }
-.btn-yellow{
+.btn-yellow {
   background-color: var(--color-yellow);
   color: #000;
   box-shadow: inset 0 0 0 0 #000;
@@ -65,48 +66,61 @@
   -moz-transition: ease-out 0.5s;
   transition: ease-out 0.5s;
 }
-.btn-yellow:hover{
+.btn-yellow:hover {
   background-color: #000;
   box-shadow: inset 400px 0 0 0 #000;
   color: #fff;
 }
-.text-center{
+.text-center {
   text-align: center;
 }
-.margin-bottom-1-5rem{
+.margin-bottom-1-5rem {
   margin-bottom: 1.5rem;
 }
-.color-red{
+.color-red {
   color: var(--color-red);
 }
-.color-green{
+.color-green {
   color: var(--color-green);
 }
-.color-yellow{
+.color-yellow {
   color: var(--color-yellow);
 }
-.color-blue{
+.color-blue {
   color: var(--color-blue);
 }
-.color-white{
-  color:#fff;
+.color-white {
+  color: #fff;
 }
-.color-gray{
-  color:var(--secondary-font-color);
+.color-gray {
+  color: var(--secondary-font-color);
 }
-.bg-black{
+.bg-black {
   background-color: #000;
 }
+.bg-green {
+  background-color: var(--color-green);
+}
+.bg-yellow {
+  background-color: var(--color-yellow);
+}
+.bg-red {
+  background-color: var(--color-red);
+}
+.bg-blue {
+  background-color: var(--color-blue);
+}
 
-/* ........................................... media queries .............................................. */ 
-@media(max-width:800px){
-  .big-heading, .big-heading span{
+/* ........................................... media queries .............................................. */
+@media (max-width: 800px) {
+  .big-heading,
+  .big-heading span {
     font-size: 2.5rem;
     padding-bottom: 1rem;
     letter-spacing: -2px;
     line-height: 1.2;
   }
-  .big-desc{
+  .big-desc {
     font-size: 1rem;
     line-height: 1.5;
   }

@@ -13,8 +13,8 @@ function Dashboard(props) {
         <div className="dashboard">
           <UserNav />
           <div className="content-layout">
-            {props.Body}
-            {props.Chat}
+            <div className="dashboard-container">{props.Body}</div>
+            <div className="dashboard-chat-container">{props.Chat}</div>
           </div>
         </div>
       </div>
