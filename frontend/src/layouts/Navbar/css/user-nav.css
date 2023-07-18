@@ -1,12 +1,3 @@
-.user-nav {
-  width: 300px;
-  background-color: #081225;
-  padding: 2.5rem 1rem 1.5rem 1rem;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
 .logo-display {
   display: flex;
   justify-content: center;

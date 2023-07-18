@@ -17,6 +17,10 @@ const Router = createBrowserRouter([
     path: "/user/dashboard",
     element: <Dashboard Body={<UserDashboard />} Chat={<UserChat />} />,
   },
+  {
+    path: "/mentors",
+    element: <Dashboard Body={<h1>ha</h1>} Chat={<UserChat />} />,
+  },
 ]);
 
 export default Router;
