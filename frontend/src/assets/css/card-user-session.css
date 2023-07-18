@@ -26,15 +26,18 @@
 .session-time-wrap {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.5rem;
 }
 .session-time,
 .session-date {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: flex-start;
   align-items: center;
   color: var(--secondary-font-color);
+}
+.schedule-text {
+  font-size: 12px;
 }
 .session-status {
   display: flex;

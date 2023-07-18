@@ -1,7 +1,10 @@
 .chat-section-wrap {
   padding: 1rem;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .reciver-details {
   padding: 1.5rem 1rem;
@@ -40,4 +43,40 @@
   text-align: center;
   /* color: var(--color-blue); */
   margin: 1rem auto;
+}
+.chat-section {
+  width: 100%;
+  padding: 8px;
+  border: 0.5px solid var(--border-light);
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.send-message-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+#send-message {
+  flex-grow: 1;
+  border: 1px solid var(--border-bold);
+  border-radius: 5px;
+  background-color: #f3f2f2;
+  resize: none;
+  padding: 1rem;
+}
+.btn-send {
+  height: 100%;
+  aspect-ratio: 1/1;
+  padding: 1rem;
+  border: 1px solid var(--color-blue);
+  background-color: var(--color-blue);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
 }

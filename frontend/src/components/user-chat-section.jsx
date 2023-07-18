@@ -6,6 +6,7 @@ import {
   FaLinkedin,
   FaInstagram,
 } from "react-icons/fa6";
+import { MdOutlineSend } from "react-icons/md";
 export default function UserChat() {
   return (
     <>
@@ -23,7 +24,17 @@ export default function UserChat() {
         </div>
         <div className="span-tag">--- Activity ---</div>
         <div className="chat-section"></div>
-        <div className="send-message-section"></div>
+        <div className="send-message-section">
+          <textarea
+            name=""
+            id="send-message"
+            rows="1"
+            placeholder="write a message"
+          ></textarea>
+          <button className="btn-send">
+            <MdOutlineSend />
+          </button>
+        </div>
       </div>
     </>
   );
