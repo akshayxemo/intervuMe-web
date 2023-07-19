@@ -1,0 +1,65 @@
+.form {
+  padding: 1rem;
+  max-width: 400px;
+  width: 400px;
+}
+.full-field {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--gray-bg);
+  border: 1px solid var(--border-light);
+  box-shadow: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+.double-field {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.link {
+  color: var(--color-blue);
+  cursor: pointer;
+}
+.gender-form {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0.8rem 0 1.5rem 0;
+}
+input[type="radio"] {
+  cursor: pointer;
+}
+.alternate-option {
+  margin-top: 1rem;
+  text-align: center;
+}
+.form-error-msg {
+  padding: 5px;
+  border: 1px solid red;
+  border-radius: 3px;
+  background-color: red;
+  color: #fff;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.server-error-msg {
+  padding: 10px;
+  border: 2px solid red;
+  font-weight: 500;
+  border-radius: 3px;
+  color: red;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.additional-sec {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+label,
+p {
+  color: var(--secondary-font-color);
+}

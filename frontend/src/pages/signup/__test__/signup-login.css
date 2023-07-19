@@ -1,0 +1,34 @@
+.authentication-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+.auth-side {
+  width: 50%;
+  height: 100vh;
+}
+.form-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.side-pic {
+  width: 100%;
+  height: 100%;
+}
+.image-side {
+  background-size: cover;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+@media (max-width: 1000px) {
+  .image-side {
+    display: none;
+  }
+  .auth-side {
+    width: 100%;
+  }
+}

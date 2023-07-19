@@ -16,6 +16,7 @@
 }
 .heading {
   font-size: 1.5rem;
+  letter-spacing: -1px;
 }
 .big-heading,
 .big-heading span {
@@ -27,6 +28,23 @@
 .big-desc {
   font-size: 1.2rem;
   line-height: 1.5;
+}
+.heading-2 {
+  font-family: var(--primary-font);
+  font-size: 2rem;
+  letter-spacing: -1.5px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+  line-height: 1;
+}
+.mini-heading {
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2;
+  text-transform: uppercase;
+  margin-bottom: 0;
 }
 .flex-center-column {
   display: flex;
@@ -47,6 +65,18 @@
   transition: 0.5s ease;
   cursor: pointer;
 }
+.btn-full {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: none;
+  color: #000;
+  padding: 1rem;
+  width: 100%;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
 .btn-transparent {
   box-shadow: inset 0 0 0 0 #000;
   -webkit-transition: ease-out 0.5s;
@@ -54,6 +84,45 @@
   transition: ease-out 0.5s;
 }
 .btn-transparent:hover {
+  background-color: #000;
+  box-shadow: inset 400px 0 0 0 #000;
+  color: #fff;
+}
+.btn-black-green {
+  background-color: #000;
+  color: #fff;
+  box-shadow: inset 0 0 0 0 var(--color-green);
+  -webkit-transition: ease-out 0.5s;
+  -moz-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+}
+.btn-black-green:hover {
+  background-color: var(--color-green);
+  box-shadow: inset 400px 0 0 0 var(--color-green);
+  color: #fff;
+}
+.btn-black-blue {
+  background-color: #000;
+  color: #fff;
+  box-shadow: inset 0 0 0 0 var(--color-blue);
+  -webkit-transition: ease-out 0.5s;
+  -moz-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+}
+.btn-black-blue:hover {
+  background-color: var(--color-blue);
+  box-shadow: inset 400px 0 0 0 var(--color-blue);
+  color: #fff;
+}
+.btn-green {
+  background-color: var(--color-green);
+  color: #fff;
+  box-shadow: inset 0 0 0 0 #000;
+  -webkit-transition: ease-out 0.5s;
+  -moz-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+}
+.btn-green:hover {
   background-color: #000;
   box-shadow: inset 400px 0 0 0 #000;
   color: #fff;
