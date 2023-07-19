@@ -1,7 +1,12 @@
 import UserNav from "../../layouts/Navbar/user-navbar";
 import "./dashboard.css";
 import PropTypes from "prop-types";
-import { MdOutlineChevronLeft, MdOutlineChevronRight } from "react-icons/md";
+import {
+  MdOutlineChevronLeft,
+  MdOutlineChevronRight,
+  MdOutlineClose,
+  MdSms,
+} from "react-icons/md";
 import { useState, useEffect } from "react";
 Dashboard.propTypes = {
   Body: PropTypes.element,
@@ -9,15 +14,23 @@ Dashboard.propTypes = {
 };
 function Dashboard(props) {
   const [navShow, setNavShow] = useState(true);
+  const [chatShow, setChatShow] = useState(false);
+  const [navShowContent, setNavShowContent] = useState(true);
+  const handleChatShow = () => {
+    setChatShow(!chatShow);
+  };
   const handleNavShow = () => {
     setNavShow(!navShow);
+    // setNavShowContent(!navShow);
   };
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 1200) {
         setNavShow(false);
+        setNavShowContent(false);
       } else {
         setNavShow(true);
+        setNavShowContent(true);
       }
     };
     handleResize();
@@ -34,12 +47,20 @@ function Dashboard(props) {
         <div className="dashboard">
           <div
             className={
-              navShow ? "user-nav user-nav-full" : "user-nav user-nav-none"
+              navShow
+                ? "user-nav user-nav-full"
+                : "user-nav user-nav-none display-none"
             }
           >
             <UserNav func={handleNavShow} navControl={setNavShow} />
           </div>
-          <div className="content-layout">
+          <div
+            className={
+              navShow && navShowContent
+                ? "content-layout content-layout-clipped"
+                : "content-layout content-layout-full"
+            }
+          >
             <div className="nav-control-btn" onClick={handleNavShow}>
               {navShow ? (
                 <MdOutlineChevronLeft className="nav-control-icon" />
@@ -47,8 +68,31 @@ function Dashboard(props) {
                 <MdOutlineChevronRight className="nav-control-icon" />
               )}
             </div>
-            <div className="dashboard-container">{props.Body}</div>
-            <div className="dashboard-chat-container">{props.Chat}</div>
+            <div
+              className={
+                chatShow
+                  ? "dashboard-container dashboard-container-clapped"
+                  : "dashboard-container dashboard-container-full"
+              }
+            >
+              {props.Body}
+            </div>
+            <div
+              className={
+                chatShow
+                  ? "dashboard-chat-container chat-container-full"
+                  : "dashboard-chat-container chat-container-none"
+              }
+            >
+              <div className="chat-icon-wrap" onClick={handleChatShow}>
+                <MdSms className="chat-icon" />
+              </div>
+              <MdOutlineClose
+                className={chatShow ? "close-chat" : "display-none"}
+                onClick={handleChatShow}
+              />
+              {chatShow ? props.Chat : ""}
+            </div>
           </div>
         </div>
       </div>

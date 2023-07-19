@@ -7,42 +7,17 @@
   gap: 2.5rem;
   overflow: hidden;
   transition: 0.5s ease;
-  /* position: relative; */
 }
-.user-nav-full{
-  width: 300px;
+.user-nav-full {
+  width: 20%;
 }
-.user-nav-none{
+.user-nav-none {
   width: 0;
   padding: 0;
 }
-.dashboard{
-  display: flex;
-  flex-direction: row;
-}
-.content-layout{
-  width: 100%;
-  height: 100vh;
-  /* background-color: #f7f7f7; */
-  display: flex;
-  flex-direction: row;
-}
-.dashboard-container{
-  width: 70%;
-  overflow: auto;
-  border-right: 2px solid var(--border-light);
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  /* background-color: antiquewhite; */
-}
-.dashboard-chat-container{
-  width: 30%;
-  position: relative;
-}
-
-.nav-control-btn{
-  height: 50px;
-  width: 50px;
+.nav-control-btn {
+  height: 30px;
+  width: 30px;
   aspect-ratio: 1/1;
   background-color: var(--color-blue);
   color: #fff;
@@ -52,59 +27,152 @@
   cursor: pointer;
   border-radius: 0 50% 50% 0;
   position: absolute;
+  z-index: 1000;
 }
-.nav-control-icon{
+.nav-control-icon {
   font-size: 1.5rem;
 }
-.navbar{
+.navbar {
   position: absolute;
 }
-.chat-control-btn{
-  height: 50px;
-  width: 50px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background-color: var(--color-blue);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 0;
-}
-.close-icon{
+.close-icon {
   display: none;
   color: #fff;
   align-self: flex-end;
   font-size: 1.5rem;
   cursor: pointer;
 }
-@media(max-width:600px){
-  .logo-display{
+
+/* ....................................Dashbpard Section Css........................... */
+.dashboard {
+  display: flex;
+  flex-direction: row;
+}
+.content-layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+.content-layout-full {
+  width: 100%;
+}
+.content-layout-clipped {
+  width: 80%;
+}
+.dashboard-container {
+  overflow: auto;
+  border-right: 2px solid var(--border-light);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  transition: 0.5s ease-in-out;
+}
+.dashboard-container-full {
+  width: 100%;
+}
+.dashboard-container-clapped {
+  width: 70%;
+}
+
+/* ....................................Chat Section Css........................... */
+.dashboard-chat-container {
+  position: relative;
+  transition: 0.5s ease-in-out;
+}
+.chat-container-full {
+  width: 30%;
+}
+.chat-container-none {
+  width: 0;
+  margin: 0;
+  padding: 0;
+}
+.chat-icon-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  left: -3.3rem;
+  bottom: 1rem;
+  background-color: var(--color-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.chat-icon {
+  font-size: 1.5rem;
+  color: #fff;
+}
+.close-chat {
+  display: none;
+  color: #081225;
+  position: absolute;
+  font-size: 1.5rem;
+  cursor: pointer;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+/* ....................................Media Queries........................... */
+@media (max-width: 1200px) {
+  .logo-display {
     padding-left: 2rem;
     padding-right: 2rem;
     justify-content: space-between;
   }
-  .close-icon{
+  .close-icon {
     display: block;
   }
-  .user-nav-full{
+  .user-nav-full {
+    position: absolute;
+    z-index: 1000;
+    width: 30%;
+  }
+}
+@media (max-width: 1000px) {
+  .user-nav-full {
+    position: absolute;
+    z-index: 1000;
+    width: 50%;
+  }
+  .chat-container-full {
+    width: 40%;
+  }
+  .dashboard-container-clapped {
+    width: 60%;
+  }
+}
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .user-nav-full {
     position: absolute;
     z-index: 1000;
     width: 80%;
   }
-  .user-nav-none{
+  .user-nav-none {
     width: 0;
     padding: 0;
   }
+  .chat-container-full {
+    width: 100%;
+  }
+  .dashboard-container-clapped {
+    width: 0%;
+    padding: 0;
+  }
+  .close-chat {
+    display: block;
+  }
 }
-@media(max-width:350px){
-  .user-nav-full{
+@media (max-width: 350px) {
+  .user-nav-full {
     position: absolute;
     z-index: 1000;
     width: 100%;
   }
-  .user-nav-none{
+  .user-nav-none {
     width: 0;
     padding: 0;
   }

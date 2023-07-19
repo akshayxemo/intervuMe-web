@@ -1,6 +1,7 @@
 .session-wrap {
   display: flex;
   padding: 1rem 1.5rem;
+  flex-wrap: wrap;
   border-radius: 8px;
   width: 100%;
   gap: 1rem;
@@ -55,4 +56,10 @@
   width: 1px;
   height: 1rem;
   border: 1px solid var(--border-light);
+}
+
+@media (max-width: 375px) {
+  .separator {
+    display: none;
+  }
 }

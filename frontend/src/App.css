@@ -110,6 +110,9 @@
 .bg-blue {
   background-color: var(--color-blue);
 }
+.display-none {
+  display: none;
+}
 
 /* ........................................... media queries .............................................. */
 @media (max-width: 800px) {

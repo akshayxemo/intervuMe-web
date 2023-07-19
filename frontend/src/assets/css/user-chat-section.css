@@ -16,6 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 .reciver-img {
   height: 90px;
@@ -79,4 +80,10 @@
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media (max-width: 300px) {
+  #send-message::placeholder {
+    font-size: 12px;
+  }
 }

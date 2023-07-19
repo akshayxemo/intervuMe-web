@@ -95,6 +95,7 @@ function UserDashboardChart(props) {
             </linearGradient>
           </defs>
           <XAxis
+            className="x-axis"
             dataKey="date"
             axisLine={false}
             tickLine={false}
@@ -108,6 +109,8 @@ function UserDashboardChart(props) {
             }}
           />
           <YAxis
+            className="y-axis"
+            width={30}
             axisLine={false}
             tickLine={false}
             tickCount={5}
@@ -119,7 +122,7 @@ function UserDashboardChart(props) {
               }
               return "";
             }}
-            dx={-20}
+            dx={-10}
           />
           <Tooltip content={<CustomTooltip />} />
           <CartesianGrid vertical={false} strokeDasharray="8 8" />
