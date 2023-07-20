@@ -45,6 +45,7 @@ function LoginForm() {
         })
         .catch((error) => {
           // Handle error
+          setIsLoading(false);
           console.error(error);
           setSubmitError(error.response.data.message);
         });

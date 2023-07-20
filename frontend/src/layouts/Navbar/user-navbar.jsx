@@ -14,20 +14,37 @@ import {
   MdOutlineClose,
 } from "react-icons/md";
 import PropTypes from "prop-types";
+import { useAuth } from "../../router/AuthContext";
+import Loader from "../../components/loader";
+
 UserNav.propTypes = {
   func: PropTypes.func.isRequired,
   navControl: PropTypes.func.isRequired,
 };
+
 function UserNav(props) {
   const [activeNav, setActiveNav] = useState("dashboard");
+  const [isLoading, setIsLoading] = useState(false);
+  const { logout } = useAuth();
   const handleActiveNav = (navItem) => {
     setActiveNav(navItem);
     props.navControl(false);
   };
+  const handleLogOut = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      logout(); // logging out removing the token from localstorage
+      // <Navigate to="/" />;
+    }, 1500);
+  };
   return (
     <>
+      {isLoading && <Loader />}
       <div className="logo-display">
-        <img src={logo} className="dashboard-logo" />
+        <Link to={`/`} style={{ display: "flex", alignItems: "center" }}>
+          <img src={logo} className="dashboard-logo" />
+        </Link>
         <MdOutlineClose className="close-icon" onClick={props.func} />
       </div>
       <div className="navigations">
@@ -103,12 +120,12 @@ function UserNav(props) {
           </div>
           <div className="nav-text">Help & information</div>
         </Link>
-        <Link to={`/logout`} className="nav logout">
+        <div className="nav logout" onClick={handleLogOut}>
           <div className="nav-icon">
             <MdOutlineDoNotDisturbOn className="icon" />
           </div>
           <div className="nav-text">logout</div>
-        </Link>
+        </div>
       </div>
     </>
   );

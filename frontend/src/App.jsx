@@ -11,7 +11,6 @@ function App() {
         <AuthProvider>
           <AppRouter />
         </AuthProvider>
-        {/* <RouterProvider router={AppRouter} /> */}
       </React.StrictMode>
     </>
   );

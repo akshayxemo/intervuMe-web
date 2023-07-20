@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routers
 app.use(require("./routers/auth"));
+app.use(require("./routers/dashboard"));
 
 // listening code
 app.listen(port, () => {

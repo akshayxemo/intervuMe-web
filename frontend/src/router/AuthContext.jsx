@@ -2,7 +2,7 @@
 import { createContext, useState, useContext } from "react";
 import jwtDecode from "jwt-decode"; // If you want to check token expiration
 import PropTypes from "prop-types";
-// import { Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -12,14 +12,14 @@ const AuthProvider = ({ children }) => {
   const login = (token) => {
     setToken(token);
     localStorage.setItem("token", token);
-    // <Navigate to="/user/dashboard" />;
+    <Navigate to="/user/dashboard" />;
     // navigate("");
   };
 
   const logout = () => {
     setToken(null);
     localStorage.removeItem("token");
-    // <Navigate to="/" replace />;
+    <Navigate to="/" replace />;
   };
 
   const isAuthenticated = () => {
