@@ -1,13 +1,17 @@
 import "./App.css";
-import { RouterProvider } from "react-router-dom";
+// import { RouterProvider } from "react-router-dom";
 import React from "react";
-import Router from "./router/router";
+import AppRouter from "./router/router";
+import { AuthProvider } from "./router/AuthContext";
 
 function App() {
   return (
     <>
       <React.StrictMode>
-        <RouterProvider router={Router} />
+        <AuthProvider>
+          <AppRouter />
+        </AuthProvider>
+        {/* <RouterProvider router={AppRouter} /> */}
       </React.StrictMode>
     </>
   );

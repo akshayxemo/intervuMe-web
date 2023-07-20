@@ -1,4 +1,4 @@
-// import loadAnimation from "../assets/lotus-circle.gif";
+import loadAnimation from "../assets/icons8-geometric-shape.gif";
 function Loader() {
   return (
     <>
@@ -13,17 +13,20 @@ function Loader() {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "#fff",
-            position: "relative",
+            position: "absolute",
+            left: "0",
+            top: "0",
             zIndex: "1000",
           }}
         >
           <img
-            // src={loadAnimation}
+            src={loadAnimation}
             alt=""
             style={{
-              width: "90px",
-              height: "90px",
+              width: "30px",
+              height: "30px",
               aspectRatio: "1/1",
+              marginBottom: "10px",
             }}
           />
           <p>Please wait...</p>
