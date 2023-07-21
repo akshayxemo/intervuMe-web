@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const { User, validate } = require("../models/user.model");
 const jwt = require("jsonwebtoken");
-const sendMail = require("../util/sendMail");
+// const sendMail = require("../util/sendMail");
 
 module.exports = {
   post: async (req, res) => {
@@ -41,11 +41,11 @@ module.exports = {
           { userId: newUser._id },
           process.env.JWT_SECRET_KEY
         );
-        sendMail(
-          req.body.email,
-          "[InterVuMe] SIGN UP Success ✅",
-          `CONGRATULATIONS!! ${req.body.name}\nYou have successfully signed up with us`
-        );
+        // sendMail(
+        //   req.body.email,
+        //   "[InterVuMe] SIGN UP Success ✅",
+        //   `CONGRATULATIONS!! ${req.body.name}\nYou have successfully signed up with us`
+        // );
         res.json({ token });
       })
       .catch((err) => res.status(400).json("Error: " + err));
