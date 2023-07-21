@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const requireLogin = require("../middlewares/requireLogin");
-const dashboardBodyController = require("../controllers/dashboardBodyController");
-router.get("/user/dashboard", requireLogin, dashboardBodyController.get);
+const userDashboardController = require("../controllers/userDashboardController");
+router.get("/user/dashboard", requireLogin, userDashboardController.get);
+router.post("/session/add", requireLogin, userDashboardController.sessionAdd);
 
 module.exports = router;

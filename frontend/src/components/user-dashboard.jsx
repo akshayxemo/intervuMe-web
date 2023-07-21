@@ -21,6 +21,7 @@ for (let num = 7; num >= 0; num--) {
 
 function UserDashboard() {
   const [userdata, setUserData] = useState(null);
+  const [sessionData, setSessionData] = useState([]);
   const token = localStorage.getItem("token");
   useEffect(() => {
     // Function to fetch data from the server
@@ -32,7 +33,23 @@ function UserDashboard() {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        setUserData(response.data);
+        setUserData(response.data.username);
+        const sortedSessions = response.data.sessions.sort((a, b) => {
+          if (
+            (a.status === "upcoming" && b.status !== "upcoming") ||
+            (a.status === "ongoing" && b.status !== "ongoing")
+          ) {
+            return -1;
+          } else if (
+            (a.status !== "upcoming" && b.status === "upcoming") ||
+            (a.status !== "ongoing" && b.status === "ongoing")
+          ) {
+            return 1;
+          } else {
+            return a.sessionDate.localeCompare(b.sessionDate);
+          }
+        });
+        setSessionData(sortedSessions);
         console.log(response.data);
       } catch (error) {
         console.error(error);
@@ -66,10 +83,22 @@ function UserDashboard() {
             <h1 className="session-title">My Sessions</h1>
           </div>
           <div className="session-list">
-            <UserSessionCard />
-            <UserSessionCard />
-            <UserSessionCard />
-            <UserSessionCard />
+            {sessionData.length !== 0 ? (
+              sessionData.map((item) => {
+                return (
+                  <UserSessionCard
+                    key={item._id}
+                    name={item.mentorName}
+                    role={item.mentorRole}
+                    date={item.sessionDate}
+                    time={item.sessionTime}
+                    status={item.status}
+                  />
+                );
+              })
+            ) : (
+              <div className="No-session">No Session found</div>
+            )}
           </div>
         </div>
       </div>

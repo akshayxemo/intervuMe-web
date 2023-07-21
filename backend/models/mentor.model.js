@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const joi = require("joi");
+const PasswordComplexity = require("joi-password-complexity");
 
 const mentorSchema = new mongoose.Schema(
   {
@@ -9,6 +11,7 @@ const mentorSchema = new mongoose.Schema(
     emailId: {
       type: String,
       required: true,
+      unique: true,
     },
     gender: {
       type: String,
@@ -36,5 +39,16 @@ const mentorSchema = new mongoose.Schema(
   }
 );
 
+const MentorValidate = (data) => {
+  const schema = joi.object({
+    name: joi.string().required().label("name"),
+    gender: joi.string().required().label("gender"),
+    email: joi.string().email().required().label("email"),
+    password: PasswordComplexity().required().label("password"),
+    role: joi.string().required().label("role"),
+  });
+  return schema.validate(data);
+};
+
 const Mentor = mongoose.model("Mentor", mentorSchema);
-module.exports = Mentor;
+module.exports = { Mentor, MentorValidate };

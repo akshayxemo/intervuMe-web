@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
-
+// const joi = require("joi");
+// joi.objectId = require("joi-objectid")(joi);
 const sessionSchema = new mongoose.Schema(
   {
     userId: {
-      type: ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
     mentorId: {
-      type: ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Mentor",
       required: true,
     },
@@ -23,7 +24,7 @@ const sessionSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: ["upcoming", "ongoing", "completed", "cancelled", "missed"],
-      default: "pending",
+      default: "upcoming",
     },
   },
   {

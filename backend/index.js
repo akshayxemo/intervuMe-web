@@ -4,6 +4,10 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Import required modules
+const http = require("http").Server(app);
+const socketIO = require("socket.io");
+
 // setting up server side rendering view engine
 app.set("view engine", "ejs");
 // setting public folder accessable for all views
@@ -17,6 +21,9 @@ dbConnect();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Set up Socket.IO server
+const io = socketIO(http);
+app.set("io", io);
 
 // routers
 app.use(require("./routers/auth"));
