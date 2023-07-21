@@ -1,4 +1,4 @@
-import demoImg from "../assets/demo-pic.png";
+import demoImg from "../assets/demo-img.png";
 import "../assets/css/user-dashboard.css";
 import UserDashboardChart from "./user-dashboard-chart";
 import UserSessionCard from "./card-user-session";

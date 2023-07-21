@@ -1,7 +1,7 @@
 .form {
   padding: 1rem;
   max-width: 400px;
-  width: 400px;
+  /* width: 400px; */
 }
 .full-field {
   width: 100%;

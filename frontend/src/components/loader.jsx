@@ -16,7 +16,7 @@ function Loader() {
             position: "absolute",
             left: "0",
             top: "0",
-            zIndex: "1000",
+            zIndex: "1001",
           }}
         >
           <img

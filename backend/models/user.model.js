@@ -9,7 +9,11 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
-    gender: String,
+    gender: {
+      type: String,
+      enum: ["male", "female", "other"],
+      required: true,
+    },
     emailId: {
       type: String,
       require: true,
@@ -19,7 +23,10 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
-    subscription: String,
+    subscription: {
+      type: String,
+      default: "Free",
+    },
     subscriptionToken: String,
   },
   {

@@ -2,7 +2,7 @@ import "./__test__/signup.css";
 import axios from "axios";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import googleIcon from "./images/search.png";
+// import googleIcon from "./images/search.png";
 import { useAuth } from "../../router/AuthContext";
 import Loader from "../../components/loader";
 function LoginForm() {
@@ -95,7 +95,7 @@ function LoginForm() {
           <button type="submit" className="btn-full btn-green">
             Login
           </button>
-          <button
+          {/* <button
             className="btn-full"
             style={{
               marginTop: "1rem",
@@ -114,7 +114,7 @@ function LoginForm() {
               }}
             />
             Sign in with Google
-          </button>
+          </button> */}
         </form>
         <p className="alternate-option">
           Dont Have any account? <Link to={`/auth/signup`}>SignUp</Link>
