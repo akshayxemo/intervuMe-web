@@ -5,6 +5,8 @@ import UserSessionCard from "./card-user-session";
 import { subDays } from "date-fns";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
+
 const data = [];
 function randomNumber(min, max) {
   return (Math.random() * (max - min) + min).toFixed(2);
@@ -18,13 +20,12 @@ for (let num = 7; num >= 0; num--) {
     communication: randomNumber(1, 5),
   });
 }
-
 function UserDashboard() {
   const [userdata, setUserData] = useState(null);
   const [sessionData, setSessionData] = useState([]);
+  const [updateSession, setUpdateSession] = useState(false);
   const token = localStorage.getItem("token");
   useEffect(() => {
-    // Function to fetch data from the server
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -34,31 +35,59 @@ function UserDashboard() {
           }
         );
         setUserData(response.data.username);
-        const sortedSessions = response.data.sessions.sort((a, b) => {
-          if (
-            (a.status === "upcoming" && b.status !== "upcoming") ||
-            (a.status === "ongoing" && b.status !== "ongoing")
-          ) {
-            return -1;
-          } else if (
-            (a.status !== "upcoming" && b.status === "upcoming") ||
-            (a.status !== "ongoing" && b.status === "ongoing")
-          ) {
-            return 1;
-          } else {
-            return a.sessionDate.localeCompare(b.sessionDate);
-          }
-        });
-        setSessionData(sortedSessions);
+        if (response.data.sessions) {
+          const sortedSessions = response.data.sessions.sort((a, b) => {
+            if (
+              (a.status === "upcoming" && b.status !== "upcoming") ||
+              (a.status === "ongoing" && b.status !== "ongoing")
+            ) {
+              return -1;
+            } else if (
+              (a.status !== "upcoming" && b.status === "upcoming") ||
+              (a.status !== "ongoing" && b.status === "ongoing")
+            ) {
+              return 1;
+            } else {
+              return a.sessionDate.localeCompare(b.sessionDate);
+            }
+          });
+          setSessionData(sortedSessions);
+        }
         console.log(response.data);
       } catch (error) {
         console.error(error);
       }
     };
-
+    // Function to fetch data from the server
     fetchData();
-  }, [token]);
+  }, [updateSession]);
 
+  useEffect(() => {
+    const socket = io("http://localhost:3000", {
+      query: { token: token },
+    });
+    try {
+      socket.on("connect", () => {
+        console.log("Connected to server", socket.id);
+        socket.emit("joinRoom", token);
+      });
+      socket.on("sessionUpdateds", (session) => {
+        console.log("recived");
+        console.log(session);
+        setUpdateSession(true);
+      });
+    } catch (err) {
+      console.error(err);
+    }
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  // if (updateSession) {
+  //   alert("your session started");
+  // }
   return (
     <>
       <div className="dashboard-body">
@@ -83,20 +112,19 @@ function UserDashboard() {
             <h1 className="session-title">My Sessions</h1>
           </div>
           <div className="session-list">
-            {sessionData.length !== 0 ? (
-              sessionData.map((item) => {
-                return (
-                  <UserSessionCard
-                    key={item._id}
-                    name={item.mentorName}
-                    role={item.mentorRole}
-                    date={item.sessionDate}
-                    time={item.sessionTime}
-                    status={item.status}
-                  />
-                );
-              })
-            ) : (
+            {sessionData.map((item) => {
+              return (
+                <UserSessionCard
+                  key={item._id}
+                  name={item.mentorName}
+                  role={item.mentorRole}
+                  date={item.sessionDate}
+                  time={item.sessionTime}
+                  status={item.status}
+                />
+              );
+            })}
+            {!sessionData.length && (
               <div className="No-session">No Session found</div>
             )}
           </div>

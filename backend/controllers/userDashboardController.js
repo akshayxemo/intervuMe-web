@@ -1,10 +1,8 @@
 const Session = require("../models/session.model");
 const Mentor = require("../models/mentor.model");
-const cron = require("node-cron");
-const { default: mongoose } = require("mongoose");
+
 module.exports = {
   get: async (req, res) => {
-    console.log(req.user);
     await Session.aggregate([
       { $match: { userId: req.user._id } },
       {
@@ -36,6 +34,7 @@ module.exports = {
           .send({ username: req.user.username, sessions: sessions });
       })
       .catch((err) => {
+        console.error(err);
         res.status(200).send({ username: req.user.username, error: err });
       });
   },

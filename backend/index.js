@@ -3,10 +3,12 @@ const cors = require("cors");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
+const jwt = require("jsonwebtoken");
 
 // Import required modules
 const http = require("http").Server(app);
 const socketIO = require("socket.io");
+const cron = require("node-cron");
 
 // setting up server side rendering view engine
 app.set("view engine", "ejs");
@@ -21,15 +23,44 @@ dbConnect();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 // Set up Socket.IO server
-const io = socketIO(http);
-app.set("io", io);
+const io = socketIO(http, {
+  cors: {
+    origin: "http://localhost:5173", // Allow requests from this origin
+    methods: ["GET", "POST"], // Allow only specified HTTP methods (you can add more if needed)
+    credentials: true, // Allow credentials (e.g., cookies, authentication headers)
+  },
+});
+// some require utilities
+const updateSessionStatuses = require("./util/cron");
+const { setIoInstance } = require("./util/socket");
+setIoInstance(io);
+// socket connection
+io.on("connection", (socket) => {
+  console.log("New user connected:", socket.id);
+  const { token } = socket.handshake.query;
+  // Handle join room event
+  socket.on("joinRoom", async (token) => {
+    const { userId } = await jwt.verify(token, process.env.JWT_SECRET_KEY);
+    console.log(`joined room ${userId}`);
+    socket.join(userId); // Join the specific room (using userId as the room name)
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  });
+});
+
+cron.schedule("* * * * *", () => {
+  updateSessionStatuses(io);
+});
 
 // routers
 app.use(require("./routers/auth"));
 app.use(require("./routers/dashboard"));
 
 // listening code
-app.listen(port, () => {
+http.listen(port, () => {
   console.log(`App is listening on port ${port}`);
 });
