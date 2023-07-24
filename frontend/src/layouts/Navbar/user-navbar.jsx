@@ -1,7 +1,7 @@
 import "./css/user-nav.css";
 import logo from "../../assets/intervuMe-original-white-logo.svg";
 import { Link } from "react-router-dom";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   MdOutlineDashboard,
   MdOutlineSupervisorAccount,
