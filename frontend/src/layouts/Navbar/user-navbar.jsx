@@ -1,7 +1,7 @@
 import "./css/user-nav.css";
 import logo from "../../assets/intervuMe-original-white-logo.svg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   MdOutlineDashboard,
   MdOutlineSupervisorAccount,
@@ -23,11 +23,34 @@ UserNav.propTypes = {
 };
 
 function UserNav(props) {
-  const [activeNav, setActiveNav] = useState("dashboard");
+  // const [activeNav, setActiveNav] = useState("dashboard");
+  // Memoize the activeNav value using useMemo
+  const activeNav = useMemo(() => {
+    // Your code to determine the activeNav value
+    // For example, you can extract it from the URL or use some other logic
+    // Here, we'll assume it's extracted from the URL pathname
+    const pathname = window.location.pathname;
+    if (pathname === "/user/dashboard") {
+      return "dashboard";
+    } else if (pathname === "/mentors") {
+      return "mentors";
+    } else if (pathname === "/tasks") {
+      return "tasks";
+    } else if (pathname === "/user/settings") {
+      return "settings";
+    } else if (pathname === "/user/subscriptions") {
+      return "subs";
+    } else if (pathname === "/user/performance") {
+      return "performance";
+    } else if (pathname === "/help-information") {
+      return "h&i";
+    } else {
+      return ""; // Default value
+    }
+  }, []);
   const [isLoading, setIsLoading] = useState(false);
   const { logout } = useAuth();
-  const handleActiveNav = (navItem) => {
-    setActiveNav(navItem);
+  const handleActiveNav = () => {
     props.navControl(false);
   };
   const handleLogOut = () => {
@@ -51,7 +74,7 @@ function UserNav(props) {
         <Link
           to={`/user/dashboard`}
           className={activeNav === "dashboard" ? "nav nav-active" : "nav"}
-          onClick={() => handleActiveNav("dashboard")}
+          onClick={() => handleActiveNav()}
         >
           <div className="nav-icon">
             <MdOutlineDashboard className="icon" />
@@ -61,7 +84,7 @@ function UserNav(props) {
         <Link
           to={`/mentors`}
           className={activeNav === "mentors" ? "nav nav-active" : "nav"}
-          onClick={() => handleActiveNav("mentors")}
+          onClick={() => handleActiveNav()}
         >
           <div className="nav-icon">
             <MdOutlineSupervisorAccount className="icon" />
@@ -71,7 +94,7 @@ function UserNav(props) {
         <Link
           to={`/tasks`}
           className={activeNav === "tasks" ? "nav nav-active" : "nav"}
-          onClick={() => handleActiveNav("tasks")}
+          onClick={() => handleActiveNav()}
         >
           <div className="nav-icon">
             <MdOutlineTask className="icon" />
@@ -81,7 +104,7 @@ function UserNav(props) {
         <Link
           to={`/user/settings`}
           className={activeNav === "settings" ? "nav nav-active" : "nav"}
-          onClick={() => handleActiveNav("settings")}
+          onClick={() => handleActiveNav()}
         >
           <div className="nav-icon">
             <MdOutlineSettings className="icon" />
@@ -91,7 +114,7 @@ function UserNav(props) {
         <Link
           to={`/user/subscriptions`}
           className={activeNav === "subs" ? "nav nav-active" : "nav"}
-          onClick={() => handleActiveNav("subs")}
+          onClick={() => handleActiveNav()}
         >
           <div className="nav-icon">
             <MdOutlineSubscriptions className="icon" />
@@ -101,7 +124,7 @@ function UserNav(props) {
         <Link
           to={`/user/performance`}
           className={activeNav === "performance" ? "nav nav-active" : "nav"}
-          onClick={() => handleActiveNav("performance")}
+          onClick={() => handleActiveNav()}
         >
           <div className="nav-icon">
             <MdOutlineAnalytics className="icon" />
@@ -113,7 +136,7 @@ function UserNav(props) {
         <Link
           to={`/help-information`}
           className={activeNav === "h&i" ? "nav nav-active" : "nav"}
-          onClick={() => handleActiveNav("h&i")}
+          onClick={() => handleActiveNav()}
         >
           <div className="nav-icon">
             <MdOutlineInfo className="icon" />

@@ -39,6 +39,7 @@
   display: none;
   color: #fff;
   align-self: flex-end;
+  margin-left: 1.5rem;
   font-size: 1.5rem;
   cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import UserNav from "../../layouts/Navbar/user-navbar";
+// import UserNav from "../../layouts/Navbar/user-navbar";
 import "./dashboard.css";
 import PropTypes from "prop-types";
 import {
@@ -9,10 +9,11 @@ import {
 } from "react-icons/md";
 import { useState, useEffect } from "react";
 Dashboard.propTypes = {
+  Nav: PropTypes.elementType,
   Body: PropTypes.element,
   Chat: PropTypes.element,
 };
-function Dashboard(props) {
+function Dashboard({ Nav, Body, Chat }) {
   const [navShow, setNavShow] = useState(true);
   const [chatShow, setChatShow] = useState(false);
   const [navShowContent, setNavShowContent] = useState(true);
@@ -52,7 +53,7 @@ function Dashboard(props) {
                 : "user-nav user-nav-none display-none"
             }
           >
-            <UserNav func={handleNavShow} navControl={setNavShow} />
+            <Nav func={handleNavShow} navControl={setNavShow} />
           </div>
           <div
             className={
@@ -75,7 +76,7 @@ function Dashboard(props) {
                   : "dashboard-container dashboard-container-full"
               }
             >
-              {props.Body}
+              {Body}
             </div>
             <div
               className={
@@ -91,7 +92,7 @@ function Dashboard(props) {
                 className={chatShow ? "close-chat" : "display-none"}
                 onClick={handleChatShow}
               />
-              {chatShow ? props.Chat : ""}
+              {chatShow ? Chat : ""}
             </div>
           </div>
         </div>

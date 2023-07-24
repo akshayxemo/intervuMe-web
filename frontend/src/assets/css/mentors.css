@@ -1,0 +1,99 @@
+.mentorbody {
+  width: 100%;
+  /* outline: 1px dotted black; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.mentor-card {
+  /* max-width: 48%; */
+  flex: 0 1 auto;
+  letter-spacing: -1px;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.mentor-card-top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+.mentor-card-top-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+.mentor-img {
+  height: 60px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  outline: 4px solid #8567f7;
+}
+.mentor-chat {
+  font-size: 1.5rem;
+}
+.mentor-socials {
+  width: 100%;
+  justify-content: flex-start;
+}
+.mentor-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.mentor-booking {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+.Date-Time-Picker {
+  font-size: 12px;
+  padding: 1rem;
+  height: auto;
+  border: 1px solid var(--border-bold);
+  border-radius: 5px;
+}
+.react-datepicker__day,
+.react-datepicker__day-name {
+  font-size: 13px;
+}
+
+/* styles.css or any other CSS file */
+.custom-time-slot {
+  display: flex !important;
+  flex-direction: column;
+  overflow-x: auto;
+  scrollbar-width: none; /* Hide scrollbar for modern browsers */
+  -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+}
+
+/* For modern browsers, customize the scrollbar appearance */
+.custom-time-slot::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.react-datepicker__time-container {
+  width: 100% !important;
+  overflow: auto;
+}
+.react-datepicker__time-box {
+  width: 100% !important;
+  height: 80px !important;
+  /* margin: 0 auto; */
+  overflow-y: auto !important;
+}

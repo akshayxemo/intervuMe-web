@@ -1,7 +1,9 @@
 import Home from "../pages/Home/home";
 import Dashboard from "../pages/Dashboard/dashboard";
+import UserNav from "../layouts/Navbar/user-navbar";
 import UserDashboard from "../components/user-dashboard";
 import UserChat from "../components/user-chat-section";
+import Mentors from "../components/mentors";
 import SignupLoginPage from "../pages/signup/signup-login";
 import SignupForm from "../pages/signup/signup";
 import LoginForm from "../pages/signup/login";
@@ -35,7 +37,19 @@ const Router = () => {
           path="/user/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard Body={<UserDashboard />} Chat={<UserChat />} />
+              <Dashboard
+                Nav={UserNav}
+                Body={<UserDashboard />}
+                Chat={<UserChat />}
+              />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mentors"
+          element={
+            <ProtectedRoute>
+              <Dashboard Nav={UserNav} Body={<Mentors />} Chat={<UserChat />} />
             </ProtectedRoute>
           }
         />
