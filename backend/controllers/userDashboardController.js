@@ -56,7 +56,7 @@ module.exports = {
         res.status(200).send({ message: "Session Successfully Added" });
       })
       .catch((err) => {
-        res.status(401).send({ error: "Server Error:" + err });
+        res.status(401).send({ error: "Internal Server Error.", details: err });
       });
   },
   getMentors: async (req, res) => {

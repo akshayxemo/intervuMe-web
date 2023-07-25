@@ -12,9 +12,11 @@ import {
 } from "react-icons/md";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { endOfMonth } from "date-fns";
+import { endOfMonth, format } from "date-fns";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
+import Toast from "./toast";
 
 MentorCard.propTypes = {
   id: PropTypes.string.isRequired,
@@ -24,6 +26,9 @@ MentorCard.propTypes = {
 function MentorCard({ id, data }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [userAdded, setUserAdded] = useState(false);
+  const [notSelected, setNotSelected] = useState(true);
+  const [sessionResponse, setSessionResponse] = useState();
+  const [toastError, setToastError] = useState(false);
 
   const handleUserAdded = () => {
     setUserAdded(!userAdded);
@@ -36,10 +41,48 @@ function MentorCard({ id, data }) {
   // Handler for when a date is selected
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    setNotSelected(true);
+  };
+
+  const handleSessionBooking = async () => {
+    if (selectedDate) {
+      setSessionResponse(null);
+      setToastError(false);
+      setNotSelected(true);
+      const session = await {
+        mentorId: id,
+        sessionDate: format(selectedDate, "MMMM d, yyyy"),
+        sessionTime: format(selectedDate, "hh:mm a"),
+      };
+      console.log(session);
+      await axios
+        .post("http://localhost:3000/session/add", session, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((response) => {
+          setSessionResponse(response.data.message);
+          setSelectedDate(null);
+        })
+        .catch((err) => {
+          console.error(err);
+          console.log(err.response.data.details);
+          setSessionResponse(err.response.data.error);
+          setToastError(true);
+        });
+    } else {
+      setNotSelected(false);
+      console.error("select a date");
+    }
   };
 
   return (
     <>
+      {sessionResponse && (
+        <Toast value={sessionResponse} error={toastError} show={true} />
+      )}
       <div className="mentor-card" id={id}>
         <div className="mentor-card-top">
           <div className="mentor-card-top-body">
@@ -98,11 +141,24 @@ function MentorCard({ id, data }) {
             timeCaption="Time"
             dateFormat="MMMM d, yyyy hh:mm a"
             placeholderText="Select Date and Time"
-            className="Date-Time-Picker"
+            className={
+              notSelected
+                ? "Date-Time-Picker"
+                : "Date-Time-Picker border-red placeholder-red"
+            }
             calendarClassName="custom-time-slot"
           />
-          <button className="btn-auto btn-black-green"> Book </button>
+          <button
+            className="btn-auto btn-black-green"
+            onClick={handleSessionBooking}
+          >
+            {" "}
+            Book{" "}
+          </button>
         </div>
+        {!notSelected && (
+          <span className="color-red">please select a date and time</span>
+        )}
       </div>
     </>
   );
