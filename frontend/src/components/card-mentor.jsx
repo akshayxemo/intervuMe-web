@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Toast from "./toast";
+import { io } from "socket.io-client";
 
 MentorCard.propTypes = {
   id: PropTypes.string.isRequired,
@@ -31,6 +32,7 @@ function MentorCard({ id, data }) {
   const [toastError, setToastError] = useState(false);
   const [availableTimes, setAvailableTimes] = useState({});
   const [bookedDates, setBookedDates] = useState([]);
+  const token = localStorage.getItem("token");
   // Calculate the first day and last day of the current month
   const currentDate = new Date();
   const lastDayOfMonth = endOfMonth(currentDate);
@@ -66,6 +68,31 @@ function MentorCard({ id, data }) {
     console.log("end", endOfWeek(currentDate));
     getBookedSessionDate();
     console.log(bookedDates);
+    const socket = io("http://localhost:3000", {
+      query: { token: token },
+    });
+    try {
+      socket.on("connect", () => {
+        console.log("Connected to server", socket.id);
+        socket.emit("joinRoomMentorTimeUpdate", token, id);
+      });
+      socket.on("MentorBookingUpdate", (session) => {
+        console.log("recived");
+        console.log("socket", session);
+        setBookedDates((prevDates) => [
+          ...prevDates,
+          new Date(session.sessionDate).toISOString(),
+        ]);
+        // bookedDates.push(new Date(session.sessionDate).toISOString());
+        console.log(bookedDates);
+      });
+    } catch (err) {
+      console.error(err);
+    }
+
+    return () => {
+      socket.disconnect();
+    };
   }, [data]);
 
   const handleUserAdded = () => {
@@ -73,20 +100,14 @@ function MentorCard({ id, data }) {
   };
 
   const filterPassedTime = (time) => {
-    // console.log(format(time, "MMMM d, yyyy"));
-    // console.log(time.getDay());
     const selected_date = format(time, "MMMM d, yyyy");
     const dayOfWeek = time.getDay();
-    // console.log(new Date(`${selected_date} ${availableTimes[dayOfWeek][0]}`));
     const times = availableTimes[dayOfWeek].map((time) => {
       return new Date(`${selected_date} ${time}`).toISOString();
     });
 
     const currentDate = new Date();
     const selectedDate = new Date(time);
-    console.error(selectedDate);
-    console.log(times);
-    console.log(times.includes(selectedDate.toISOString()));
     return (
       currentDate.getTime() < selectedDate.getTime() &&
       times.includes(selectedDate.toISOString())
@@ -96,7 +117,6 @@ function MentorCard({ id, data }) {
   const filterTime = (time) => {
     const selected_date = format(time, "MMMM d, yyyy");
     const dayOfWeek = time.getDay();
-    // console.log(new Date(`${selected_date} ${availableTimes[dayOfWeek][0]}`));
     const times = availableTimes[dayOfWeek].map((time) => {
       return new Date(`${selected_date} ${time}`).toISOString();
     });
@@ -109,7 +129,6 @@ function MentorCard({ id, data }) {
   };
 
   const handleColor = (time) => {
-    console.log(`timmmmmee ${time.toISOString()} \n jjj: ${bookedDates[0]}`);
     return bookedDates.includes(time.toISOString())
       ? "color-red disable"
       : "color-green";

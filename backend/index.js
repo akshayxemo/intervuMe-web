@@ -36,6 +36,8 @@ const io = socketIO(http, {
 const updateSessionStatuses = require("./util/cron");
 const { setIoInstance } = require("./util/socket");
 setIoInstance(io);
+app.set("socket", io);
+// console.log(io);
 // socket connection
 io.on("connection", (socket) => {
   console.log("New user connected:", socket.id);
@@ -45,6 +47,14 @@ io.on("connection", (socket) => {
     const { userId } = await jwt.verify(token, process.env.JWT_SECRET_KEY);
     console.log(`joined room ${userId}`);
     socket.join(userId); // Join the specific room (using userId as the room name)
+  });
+
+  socket.on("joinRoomMentorTimeUpdate", async (token, id) => {
+    const { userId } = await jwt.verify(token, process.env.JWT_SECRET_KEY);
+    console.log(`joined room ${id}`);
+    if (userId) {
+      socket.join(`mentorSessionTimeUpdate${id}`);
+    } // Join the specific room (using userId as the room name)
   });
 
   socket.on("disconnect", () => {

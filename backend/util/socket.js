@@ -22,6 +22,7 @@ const getSocketInstance = () => {
   return socketInstance;
 };
 module.exports = {
+  ioInstance,
   setIoInstance,
   getIoInstance,
   setSocketInstance,

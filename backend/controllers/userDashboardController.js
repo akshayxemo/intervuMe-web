@@ -1,6 +1,7 @@
 const Session = require("../models/session.model");
 const { Mentor } = require("../models/mentor.model");
-
+const { ioInstance } = require("../util/socket");
+const { application } = require("express");
 module.exports = {
   get: async (req, res) => {
     await Session.aggregate([
@@ -40,6 +41,8 @@ module.exports = {
   },
 
   sessionAdd: async (req, res) => {
+    const socket = req.app.get("socket");
+    console.log(socket);
     console.log(req.body);
     console.log("user " + req.user._id);
 
@@ -52,7 +55,10 @@ module.exports = {
     });
     await newSession
       .save()
-      .then(() => {
+      .then((session) => {
+        socket
+          .to(`mentorSessionTimeUpdate${session.mentorId}`)
+          .emit("MentorBookingUpdate", session);
         res.status(200).send({ message: "Session Successfully Added" });
       })
       .catch((err) => {
