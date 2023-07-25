@@ -1,9 +1,25 @@
+.mentors-header{
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px dotted var(--border-light);
+}
+.mentors-title{
+  font-size: 2rem;
+}
+.mentors-desc{
+  margin-top: 1rem;
+}
 .mentorbody {
   width: 100%;
   /* outline: 1px dotted black; */
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   margin-top: 2rem;
@@ -42,6 +58,7 @@
 }
 .mentor-chat {
   font-size: 1.5rem;
+  cursor: pointer;
 }
 .mentor-socials {
   width: 100%;

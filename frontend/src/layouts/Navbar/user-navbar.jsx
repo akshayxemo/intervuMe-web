@@ -50,9 +50,12 @@ function UserNav(props) {
   }, []);
   const [isLoading, setIsLoading] = useState(false);
   const { logout } = useAuth();
+
   const handleActiveNav = (item) => {
     setActiveNav(item);
-    props.navControl(false);
+    if (window.innerWidth <= 600) {
+      props.navControl(false);
+    }
   };
   const handleLogOut = () => {
     setIsLoading(true);

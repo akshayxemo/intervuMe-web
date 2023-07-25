@@ -1,5 +1,5 @@
 const Session = require("../models/session.model");
-const Mentor = require("../models/mentor.model");
+const { Mentor } = require("../models/mentor.model");
 
 module.exports = {
   get: async (req, res) => {
@@ -57,6 +57,15 @@ module.exports = {
       })
       .catch((err) => {
         res.status(401).send({ error: "Server Error:" + err });
+      });
+  },
+  getMentors: async (req, res) => {
+    await Mentor.find({})
+      .then((mentor) => {
+        res.status(200).send({ mentor: mentor });
+      })
+      .catch((err) => {
+        res.status(400).send({ error: err });
       });
   },
 };
