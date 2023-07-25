@@ -12,7 +12,7 @@ import {
 } from "react-icons/md";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { endOfMonth, format } from "date-fns";
+import { endOfMonth, endOfWeek, format } from "date-fns";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -30,18 +30,47 @@ function MentorCard({ id, data }) {
   const [sessionResponse, setSessionResponse] = useState();
   const [toastError, setToastError] = useState(false);
   const [availableTimes, setAvailableTimes] = useState({});
+  const [bookedDates, setBookedDates] = useState([]);
+  // Calculate the first day and last day of the current month
+  const currentDate = new Date();
+  const lastDayOfMonth = endOfMonth(currentDate);
+  const getBookedSessionDate = async () => {
+    await axios
+      .post(
+        "http://localhost:3000/mentor/session",
+        {
+          mentorId: id,
+          current: currentDate,
+          endOfWeek: endOfWeek(currentDate),
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((response) => {
+        const sessionDates = response.data.sessions.map((session) =>
+          new Date(session.sessionDate).toISOString()
+        );
+        setBookedDates(sessionDates);
+      })
+      .catch((err) => {
+        console.log(err.response.data.error);
+      });
+  };
 
   useEffect(() => {
     setAvailableTimes(data.availableTimes);
-  }, []);
+    console.log("end", endOfWeek(currentDate));
+    getBookedSessionDate();
+    console.log(bookedDates);
+  }, [data]);
 
   const handleUserAdded = () => {
     setUserAdded(!userAdded);
   };
-
-  // Calculate the first day and last day of the current month
-  const currentDate = new Date();
-  const lastDayOfMonth = endOfMonth(currentDate);
 
   const filterPassedTime = (time) => {
     // console.log(format(time, "MMMM d, yyyy"));
@@ -80,7 +109,10 @@ function MentorCard({ id, data }) {
   };
 
   const handleColor = (time) => {
-    return time.getHours() > 12 ? "color-green" : "color-red";
+    console.log(`timmmmmee ${time.toISOString()} \n jjj: ${bookedDates[0]}`);
+    return bookedDates.includes(time.toISOString())
+      ? "color-red disable"
+      : "color-green";
   };
 
   const getTimeClass = (time) => {

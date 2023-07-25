@@ -59,6 +59,7 @@ module.exports = {
         res.status(401).send({ error: "Internal Server Error.", details: err });
       });
   },
+
   getMentors: async (req, res) => {
     await Mentor.find({})
       .then((mentor) => {
@@ -66,6 +67,23 @@ module.exports = {
       })
       .catch((err) => {
         res.status(400).send({ error: err });
+      });
+  },
+
+  getBookedSessions: async (req, res) => {
+    console.log(req.body);
+    const { mentorId, current, endOfWeek } = req.body;
+    await Session.find({
+      mentorId: mentorId,
+      sessionDate: { $gte: current, $lte: endOfWeek },
+    })
+      .sort("sessionDate")
+      .then((session) => {
+        console.log(session);
+        res.status(200).send({ sessions: session });
+      })
+      .catch((err) => {
+        res.status(400).send({ error: err, sessions: null });
       });
   },
 };
