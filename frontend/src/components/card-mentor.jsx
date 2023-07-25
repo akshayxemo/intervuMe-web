@@ -13,7 +13,7 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { endOfMonth, format } from "date-fns";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Toast from "./toast";
@@ -29,6 +29,17 @@ function MentorCard({ id, data }) {
   const [notSelected, setNotSelected] = useState(true);
   const [sessionResponse, setSessionResponse] = useState();
   const [toastError, setToastError] = useState(false);
+  const [availableTimes, setAvailableTimes] = useState({});
+  const [selectedDayOfWeek, setSelectedDayOfWeek] = useState(
+    new Date().getDay()
+  );
+  useEffect(() => {
+    setAvailableTimes(data.availableTimes);
+  }, []);
+
+  const getAvailableTimesForDay = (dayOfWeek) => {
+    return availableTimes[dayOfWeek] || [];
+  };
 
   const handleUserAdded = () => {
     setUserAdded(!userAdded);
@@ -38,10 +49,59 @@ function MentorCard({ id, data }) {
   const currentDate = new Date();
   const lastDayOfMonth = endOfMonth(currentDate);
 
+  const filterPassedTime = (time) => {
+    // console.log(format(time, "MMMM d, yyyy"));
+    // console.log(time.getDay());
+    const selected_date = format(time, "MMMM d, yyyy");
+    const dayOfWeek = time.getDay();
+    // console.log(new Date(`${selected_date} ${availableTimes[dayOfWeek][0]}`));
+    const times = availableTimes[dayOfWeek].map((time) => {
+      return new Date(`${selected_date} ${time}`).toISOString();
+    });
+
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+    console.error(selectedDate);
+    console.log(times);
+    console.log(times.includes(selectedDate.toISOString()));
+    return (
+      currentDate.getTime() < selectedDate.getTime() &&
+      times.includes(selectedDate.toISOString())
+    );
+  };
+
+  const filterTime = (time) => {
+    const selected_date = format(time, "MMMM d, yyyy");
+    const dayOfWeek = time.getDay();
+    // console.log(new Date(`${selected_date} ${availableTimes[dayOfWeek][0]}`));
+    const times = availableTimes[dayOfWeek].map((time) => {
+      return new Date(`${selected_date} ${time}`).toISOString();
+    });
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+    return currentDate.getTime() < selectedDate.getTime() &&
+      times.includes(selectedDate.toISOString())
+      ? ""
+      : "display-none";
+  };
+
+  const handleColor = (time) => {
+    return time.getHours() > 12 ? "color-green" : "color-red";
+  };
+
+  const getTimeClass = (time) => {
+    return `${filterTime(time)} ${handleColor(time)}`;
+  };
   // Handler for when a date is selected
   const handleDateChange = (date) => {
+    console.log(date);
     setSelectedDate(date);
+    console.log(
+      "haha Date",
+      format(date, "MMMM d, yyyy-hh:mm a").replace("-", " ")
+    );
     setNotSelected(true);
+    setSelectedDayOfWeek(date.getDay());
   };
 
   const handleSessionBooking = async () => {
@@ -137,9 +197,11 @@ function MentorCard({ id, data }) {
             maxDate={lastDayOfMonth}
             showTimeSelect
             timeFormat="hh:mm a"
-            timeIntervals={15}
+            timeIntervals={60}
             timeCaption="Time"
-            dateFormat="MMMM d, yyyy hh:mm a"
+            filterTime={filterPassedTime}
+            timeClassName={getTimeClass}
+            dateFormat="MMMM d, yyyy-hh:mm a"
             placeholderText="Select Date and Time"
             className={
               notSelected
@@ -147,6 +209,7 @@ function MentorCard({ id, data }) {
                 : "Date-Time-Picker border-red placeholder-red"
             }
             calendarClassName="custom-time-slot"
+            withPortal
           />
           <button
             className="btn-auto btn-black-green"

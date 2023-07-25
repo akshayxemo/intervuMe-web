@@ -76,7 +76,9 @@ module.exports = {
       gender: req.body.gender,
       emailId: req.body.email,
       password: hash,
+      workAt: req.body.workAt,
       role: req.body.role,
+      availableTimes: req.body.availableTimes,
     });
 
     // Save it to the database

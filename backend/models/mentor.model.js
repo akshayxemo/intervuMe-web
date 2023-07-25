@@ -23,6 +23,7 @@ const mentorSchema = new mongoose.Schema(
       require: true,
     },
     image: String,
+    workAt: String,
     role: {
       type: String,
       required: true,
@@ -32,6 +33,15 @@ const mentorSchema = new mongoose.Schema(
       linkedin: String,
       twitter: String,
       instagram: String,
+    },
+    availableTimes: {
+      0: Array,
+      1: Array,
+      2: Array,
+      3: Array,
+      4: Array,
+      5: Array,
+      6: Array,
     },
   },
   {
@@ -45,7 +55,16 @@ const MentorValidate = (data) => {
     gender: joi.string().required().label("gender"),
     email: joi.string().email().required().label("email"),
     password: PasswordComplexity().required().label("password"),
+    image: joi.string().label("image"),
+    workAt: joi.string().required().label("workAt"),
     role: joi.string().required().label("role"),
+    availableTimes: joi
+      .object()
+      .pattern(
+        joi.number().integer().min(0).max(6),
+        joi.array().items(joi.string())
+      )
+      .label("availableTimes"),
   });
   return schema.validate(data);
 };

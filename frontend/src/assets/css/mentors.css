@@ -91,15 +91,15 @@
 
 /* styles.css or any other CSS file */
 .custom-time-slot {
-  display: flex !important;
+  /* display: flex !important; */
   flex-direction: column;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   scrollbar-width: none; /* Hide scrollbar for modern browsers */
   -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
 }
 
 /* For modern browsers, customize the scrollbar appearance */
-.custom-time-slot::-webkit-scrollbar {
+/* .custom-time-slot::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
@@ -110,7 +110,6 @@
 }
 .react-datepicker__time-box {
   width: 100% !important;
-  height: 80px !important;
-  /* margin: 0 auto; */
+  height: 100px !important;
   overflow-y: auto !important;
-}
+} */
