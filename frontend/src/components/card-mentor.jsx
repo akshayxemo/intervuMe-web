@@ -30,16 +30,10 @@ function MentorCard({ id, data }) {
   const [sessionResponse, setSessionResponse] = useState();
   const [toastError, setToastError] = useState(false);
   const [availableTimes, setAvailableTimes] = useState({});
-  const [selectedDayOfWeek, setSelectedDayOfWeek] = useState(
-    new Date().getDay()
-  );
+
   useEffect(() => {
     setAvailableTimes(data.availableTimes);
   }, []);
-
-  const getAvailableTimesForDay = (dayOfWeek) => {
-    return availableTimes[dayOfWeek] || [];
-  };
 
   const handleUserAdded = () => {
     setUserAdded(!userAdded);
@@ -94,14 +88,8 @@ function MentorCard({ id, data }) {
   };
   // Handler for when a date is selected
   const handleDateChange = (date) => {
-    console.log(date);
     setSelectedDate(date);
-    console.log(
-      "haha Date",
-      format(date, "MMMM d, yyyy-hh:mm a").replace("-", " ")
-    );
     setNotSelected(true);
-    setSelectedDayOfWeek(date.getDay());
   };
 
   const handleSessionBooking = async () => {
