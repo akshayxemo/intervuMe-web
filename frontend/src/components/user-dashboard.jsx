@@ -23,7 +23,7 @@ for (let num = 7; num >= 0; num--) {
 function UserDashboard() {
   const [userdata, setUserData] = useState(null);
   const [sessionData, setSessionData] = useState([]);
-  const [updateSession, setUpdateSession] = useState(false);
+  const [updateSession, setUpdateSession] = useState();
   const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchData = async () => {
@@ -74,7 +74,7 @@ function UserDashboard() {
       socket.on("sessionUpdateds", (session) => {
         console.log("recived");
         console.log(session);
-        setUpdateSession(true);
+        setUpdateSession(session);
       });
     } catch (err) {
       console.error(err);
@@ -85,9 +85,6 @@ function UserDashboard() {
     };
   }, []);
 
-  // if (updateSession) {
-  //   alert("your session started");
-  // }
   return (
     <>
       <div className="dashboard-body">

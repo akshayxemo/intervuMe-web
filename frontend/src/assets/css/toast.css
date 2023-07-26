@@ -1,0 +1,159 @@
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-width: 250px;
+  margin-left: -125px;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: absolute;
+  z-index: 1;
+  left: 45%;
+  right: 45%;
+  bottom: 30px;
+}
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+#Notification {
+  visibility: hidden;
+  position: absolute;
+  left: 10px;
+  bottom: 20px;
+  z-index: 1;
+  max-width: 400px;
+  /* height: 100px; */
+  background-color: rgba(71, 47, 205, 0.85);
+  border: 2px solid var(--color-blue);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  backdrop-filter: blur(10px);
+  border-radius: 6px;
+}
+#Notification.show {
+  visibility: visible;
+  -webkit-animation: fadeinNoti 0.5s;
+  animation: fadeinNoti 0.5s;
+}
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadeinNoti {
+  from {
+    left: 0;
+    opacity: 0;
+  }
+  to {
+    left: 10px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeinNoti {
+  from {
+    left: 0;
+    opacity: 0;
+  }
+  to {
+    left: 10px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeoutNoti {
+  from {
+    left: 10px;
+    opacity: 1;
+  }
+  to {
+    left: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeoutNoti {
+  from {
+    left: 10px;
+    opacity: 1;
+  }
+  to {
+    left: 0;
+    opacity: 0;
+  }
+}
+.notification-body {
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+.notification-bot {
+  height: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  outline: 4px solid #8567f7;
+}
+.n-text {
+  color: #fff;
+}
+.toast-close {
+  color: #fff;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  cursor: pointer;
+}

@@ -16,7 +16,7 @@ import { endOfMonth, endOfWeek, format } from "date-fns";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import Toast from "./toast";
+import { Toast } from "./toast";
 import { io } from "socket.io-client";
 
 MentorCard.propTypes = {

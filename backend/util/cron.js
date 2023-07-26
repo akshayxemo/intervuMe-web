@@ -24,10 +24,13 @@ const updateSessionStatuses = async (socket) => {
           { $set: { status: "completed" } }
         );
         // Emit the updated session data to connected clients via Socket.IO
-        await console.log(session.userId);
+        console.log(session.userId);
         await socket
           .to(session.userId.toString())
           .emit("sessionUpdateds", session);
+        await socket
+          .to(session.userId.toString())
+          .emit("sessionNotification", "your session is completed");
       } else if (
         timeDifference <= 0 &&
         session.status !== "ongoing" &&
@@ -42,6 +45,18 @@ const updateSessionStatuses = async (socket) => {
         await socket
           .to(session.userId.toString())
           .emit("sessionUpdateds", session);
+        await socket
+          .to(session.userId.toString())
+          .emit("sessionNotification", "you have an Ongoing Session");
+      } else if (
+        timeDifference <= 60000 &&
+        session.status !== "ongoing" &&
+        session.status !== "completed"
+      ) {
+        // Emit the updated session data to connected clients via Socket.IO
+        await socket
+          .to(session.userId.toString())
+          .emit("sessionNotification", "your session will start in 1 minute");
       }
     }
   } catch (error) {
