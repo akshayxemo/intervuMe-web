@@ -2,12 +2,15 @@ import { MdOutlineSchedule, MdOutlineDateRange } from "react-icons/md";
 import "../assets/css/card-user-session.css";
 import PropTypes from "prop-types";
 import { format, parseISO } from "date-fns";
+import { Link } from "react-router-dom";
+
 UserSessionCard.propTypes = {
   name: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
 };
 export default function UserSessionCard(props) {
   console.log(
@@ -53,6 +56,9 @@ export default function UserSessionCard(props) {
               }
             ></div>
             <p className="status-info">{props.status}</p>
+            <Link to={`/video-room/${props.token}`} className="btn">
+              Join Meeting
+            </Link>
           </div>
         </div>
       </div>

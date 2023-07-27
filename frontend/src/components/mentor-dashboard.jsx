@@ -62,6 +62,9 @@ function MentorDashboard() {
         console.log(session);
         setUpdateSession(session);
       });
+      socket.on("NewBooking-MentorNotification", (session) => {
+        setUpdateSession(session);
+      });
     } catch (err) {
       console.error(err);
     }

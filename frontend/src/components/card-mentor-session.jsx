@@ -7,6 +7,7 @@ MentorSessionCard.propTypes = {
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
 };
 export default function MentorSessionCard(props) {
   console.log(
@@ -18,7 +19,7 @@ export default function MentorSessionCard(props) {
         <div className="mentor-wrap">
           <div className="mentor-info">
             <h3 className="mentor-name">{props.name}</h3>
-            <span className="mentor-title color-red">Mentor</span>
+            <span className="mentor-title color-green">Mentee</span>
           </div>
         </div>
         <div className="separator"></div>
@@ -51,6 +52,7 @@ export default function MentorSessionCard(props) {
               }
             ></div>
             <p className="status-info">{props.status}</p>
+            <p>{props.token}</p>
           </div>
         </div>
       </div>

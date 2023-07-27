@@ -33,9 +33,6 @@ const io = socketIO(http, {
   },
 });
 // some require utilities
-const updateSessionStatuses = require("./util/cron");
-const { setIoInstance } = require("./util/socket");
-setIoInstance(io);
 app.set("socket", io);
 // console.log(io);
 // socket connection
@@ -57,7 +54,13 @@ io.on("connection", (socket) => {
     } // Join the specific room (using userId as the room name)
   });
 
-  socket.on("join-video-call", (token) => {});
+  socket.on("join-video-call", async (token) => {
+    const payload = await jwt.verify(token, process.env.JWT_SECRET_KEY);
+    if (payload) {
+      console.log(`joined-videoRoom-${payload.userId}-${payload.mentorId}`);
+      socket.join(`videoRoom-${payload.userId}-${payload.mentorId}`);
+    }
+  });
 
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);

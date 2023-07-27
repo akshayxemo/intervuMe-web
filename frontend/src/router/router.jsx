@@ -15,6 +15,7 @@ import ForgetPasswordForm from "../pages/signup/forget-password";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Loader from "../components/loader";
+import VideoCall from "../components/videoCall";
 
 const Router = () => {
   return (
@@ -69,6 +70,14 @@ const Router = () => {
                 Body={<MentorDashboard />}
                 Chat={<UserChat />}
               />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/video-room/:sessionToken"
+          element={
+            <ProtectedRoute>
+              <VideoCall />
             </ProtectedRoute>
           }
         />

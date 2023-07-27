@@ -26,6 +26,10 @@ const sessionSchema = new mongoose.Schema(
       enum: ["upcoming", "ongoing", "completed", "cancelled", "missed"],
       default: "upcoming",
     },
+    sessionToken: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

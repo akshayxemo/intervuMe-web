@@ -1,5 +1,6 @@
 const Session = require("../models/session.model");
 const { Mentor } = require("../models/mentor.model");
+const jwt = require("jsonwebtoken");
 module.exports = {
   get: async (req, res) => {
     await Session.aggregate([
@@ -23,6 +24,7 @@ module.exports = {
           mentorId: "$mentorDetails._id",
           mentorName: "$mentorDetails.username",
           mentorRole: "$mentorDetails.role",
+          sessionToken: 1,
         },
       },
     ])
@@ -40,16 +42,26 @@ module.exports = {
 
   sessionAdd: async (req, res) => {
     const socket = req.app.get("socket");
-    console.log(socket);
     console.log(req.body);
     console.log("user " + req.user._id);
-
+    const Token = jwt.sign(
+      {
+        userId: req.user._id,
+        mentorId: req.body.mentorId,
+        sessionDateTime: new Date(
+          `${req.body.sessionDate}, ${req.body.sessionTime}`
+        ),
+      },
+      process.env.JWT_SECRET_KEY
+    );
+    console.log("session Token : ", Token);
     const newSession = new Session({
       userId: req.user._id,
       mentorId: req.body.mentorId,
       sessionDate: `${req.body.sessionDate}, ${req.body.sessionTime}`,
       sessionTime: req.body.sessionTime,
       status: req.body.status,
+      sessionToken: Token,
     });
     await newSession
       .save()
@@ -57,6 +69,9 @@ module.exports = {
         socket
           .to(`mentorSessionTimeUpdate${session.mentorId}`)
           .emit("MentorBookingUpdate", session);
+        socket
+          .to(session.mentorId.toString())
+          .emit("NewBooking-MentorNotification", session);
         res.status(200).send({ message: "Session Successfully Added" });
       })
       .catch((err) => {
