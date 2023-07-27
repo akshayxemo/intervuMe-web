@@ -9,10 +9,10 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
 
-  const login = (token) => {
+  const login = (token, linkTo) => {
     setToken(token);
     localStorage.setItem("token", token);
-    <Navigate to="/user/dashboard" />;
+    <Navigate to={linkTo} />;
     // navigate("");
   };
 

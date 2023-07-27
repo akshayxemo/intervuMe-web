@@ -1,12 +1,15 @@
 import Home from "../pages/Home/home";
 import Dashboard from "../pages/Dashboard/dashboard";
 import UserNav from "../layouts/Navbar/user-navbar";
+import MentorNav from "../layouts/Navbar/mentor-nav";
 import UserDashboard from "../components/user-dashboard";
+import MentorDashboard from "../components/mentor-dashboard";
 import UserChat from "../components/user-chat-section";
 import Mentors from "../components/mentors";
 import SignupLoginPage from "../pages/signup/signup-login";
 import SignupForm from "../pages/signup/signup";
 import LoginForm from "../pages/signup/login";
+import MentorLoginForm from "../pages/signup/mentor-login";
 import SignupSuccess from "../pages/signup/signup-success";
 import ForgetPasswordForm from "../pages/signup/forget-password";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
@@ -50,6 +53,22 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <Dashboard Nav={UserNav} Body={<Mentors />} Chat={<UserChat />} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mentor/login"
+          element={<SignupLoginPage page={<MentorLoginForm />} />}
+        />
+        <Route
+          path="/mentor/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard
+                Nav={MentorNav}
+                Body={<MentorDashboard />}
+                Chat={<UserChat />}
+              />
             </ProtectedRoute>
           }
         />

@@ -1,7 +1,5 @@
 const Session = require("../models/session.model");
 const { Mentor } = require("../models/mentor.model");
-const { ioInstance } = require("../util/socket");
-const { application } = require("express");
 module.exports = {
   get: async (req, res) => {
     await Session.aggregate([

@@ -5,7 +5,7 @@ import { Link, Navigate } from "react-router-dom";
 // import googleIcon from "./images/search.png";
 import { useAuth } from "../../router/AuthContext";
 import Loader from "../../components/loader";
-function LoginForm() {
+function MentorLoginForm() {
   const initialFormData = {
     email: "",
     password: "",
@@ -17,7 +17,7 @@ function LoginForm() {
   const { isAuthenticated, login } = useAuth();
   if (isAuthenticated()) {
     // Redirect to dashboard if already logged in
-    return <Navigate to="/user/dashboard" />;
+    return <Navigate to="/mentor/dashboard" />;
   }
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,14 +32,14 @@ function LoginForm() {
       setIsLoading(true);
       console.log(formData);
       axios
-        .post("http://localhost:3000/login", formData)
+        .post("http://localhost:3000/mentor/login", formData)
         .then((response) => {
           // Handle successful response
           setFormData(initialFormData);
           localStorage.setItem("token", response.data.token);
           setTimeout(() => {
             setIsLoading(false);
-            login(response.data.token, "/user/dashboard"); // Update context with authenticated user
+            login(response.data.token, "/mentor/dashboard"); // Update context with authenticated user
           }, 1500);
           console.log(response.data);
         })
@@ -97,11 +97,12 @@ function LoginForm() {
           </button>
         </form>
         <p className="alternate-option">
-          Dont Have any account? <Link to={`/auth/signup`}>SignUp</Link>
+          Wish to be a Mentor ?{" "}
+          <Link to={`mailto:akshaykrdas001@gmail.com`}>Mail Us</Link>
         </p>
       </div>
     </>
   );
 }
 
-export default LoginForm;
+export default MentorLoginForm;

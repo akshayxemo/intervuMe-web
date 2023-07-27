@@ -2,9 +2,11 @@ const loginController = require("../controllers/loginController");
 const signupController = require("../controllers/signupController");
 const forgetPasswordController = require("../controllers/forgetPasswordController");
 const resetPasswordController = require("../controllers/resetPasswordController");
+const mentorAuthController = require("../controllers/mentorAuthController");
 const router = require("express").Router();
 
 router.post("/login", loginController.post);
+router.post("/mentor/login", mentorAuthController.login);
 router.post("/signup", signupController.post);
 router.post("/mentor/signup", signupController.MentorSignup);
 

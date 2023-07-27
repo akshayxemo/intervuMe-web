@@ -57,6 +57,8 @@ io.on("connection", (socket) => {
     } // Join the specific room (using userId as the room name)
   });
 
+  socket.on("join-video-call", (token) => {});
+
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
   });
