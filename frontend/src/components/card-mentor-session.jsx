@@ -2,6 +2,8 @@ import { MdOutlineSchedule, MdOutlineDateRange } from "react-icons/md";
 import "../assets/css/card-user-session.css";
 import PropTypes from "prop-types";
 import { format, parseISO } from "date-fns";
+import { Link } from "react-router-dom";
+
 MentorSessionCard.propTypes = {
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
@@ -52,7 +54,9 @@ export default function MentorSessionCard(props) {
               }
             ></div>
             <p className="status-info">{props.status}</p>
-            <p>{props.token}</p>
+            <Link to={`/video-room/${props.token}`} className="btn">
+              join Meeting
+            </Link>
           </div>
         </div>
       </div>

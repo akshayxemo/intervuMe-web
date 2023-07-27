@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 
 export default function VideoCall() {
   const { sessionToken } = useParams();
   const token = localStorage.getItem("token");
+  // const myVideo = useRef();
+  // const userVideo = useRef();
+  // const connectionRef = useRef();
   useEffect(() => {
     const socket = io("http://localhost:3000", {
       query: { token: token },
