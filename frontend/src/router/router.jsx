@@ -74,7 +74,7 @@ const Router = () => {
           }
         />
         <Route
-          path="/video-room/:sessionToken"
+          path="/video-room"
           element={
             <ProtectedRoute>
               <VideoCall />

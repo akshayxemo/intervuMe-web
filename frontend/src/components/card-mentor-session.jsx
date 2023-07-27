@@ -54,7 +54,10 @@ export default function MentorSessionCard(props) {
               }
             ></div>
             <p className="status-info">{props.status}</p>
-            <Link to={`/video-room/${props.token}`} className="btn">
+            <Link
+              to={`/video-room?sessionToken=${props.token}`}
+              className="btn"
+            >
               join Meeting
             </Link>
           </div>

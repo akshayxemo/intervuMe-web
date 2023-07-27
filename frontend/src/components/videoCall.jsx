@@ -1,17 +1,20 @@
-import { useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { io } from "socket.io-client";
 
 export default function VideoCall() {
-  const { sessionToken } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const sessionToken = searchParams.get("sessionToken");
   const token = localStorage.getItem("token");
   const [stream, setStream] = useState();
   const myVideo = useRef();
-  const userVideo = useRef();
-  const connectionRef = useRef();
+  console.log(sessionToken);
+  // const userVideo = useRef();
+  // const connectionRef = useRef();
   useEffect(() => {
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
+      .getDisplayMedia({ video: true, audio: true })
       .then((stream) => {
         setStream(stream);
         myVideo.current.srcObject = stream;
@@ -31,7 +34,7 @@ export default function VideoCall() {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [sessionToken]);
   return (
     <>
       {stream && (
