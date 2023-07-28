@@ -57,13 +57,31 @@ io.on("connection", (socket) => {
   socket.on("join-video-call", async (token) => {
     const payload = await jwt.verify(token, process.env.JWT_SECRET_KEY);
     if (payload) {
-      console.log(`joined-videoRoom-${payload.userId}-${payload.mentorId}`);
-      socket.join(`videoRoom-${payload.userId}-${payload.mentorId}`);
+      const roomId = `videoRoom-${payload.userId}-${payload.mentorId}`;
+      console.log(roomId);
+      socket.join(roomId);
+      socket.to(roomId).emit("user-joined", socket.id);
+      socket.on("user-joined", (id) => {
+        socket.to(roomId).emit("user-joined", id);
+      });
     }
+  });
+
+  socket.on("callUser", (data) => {
+    io.to(data.userToCall).emit("callUser", {
+      signal: data.signalData,
+      from: data.from,
+      name: data.name,
+    });
+  });
+
+  socket.on("answerCall", (data) => {
+    io.to(data.to).emit("callAccepted", data.signal);
   });
 
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
+    socket.broadcast.emit("callEnded");
   });
 });
 

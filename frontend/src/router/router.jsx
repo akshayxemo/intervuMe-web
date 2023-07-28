@@ -73,14 +73,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/video-room"
-          element={
-            <ProtectedRoute>
-              <VideoCall />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/video-room" element={<VideoCall />} />
       </Routes>
     </BrowserRouter>
   );
