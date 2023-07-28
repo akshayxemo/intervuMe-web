@@ -193,6 +193,9 @@
 .bg-blue {
   background-color: var(--color-blue);
 }
+.bg-gray {
+  background-color: #242838;
+}
 .display-none {
   display: none;
 }

@@ -1,3 +1,9 @@
+.video-main-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
 .video-container {
   display: flex;
   flex-direction: row;
@@ -42,4 +48,33 @@
 .show-user-title {
   font-weight: 400;
   letter-spacing: -0.5px;
+}
+
+.button-sets {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: rgb(12, 12, 24);
+}
+.dial-in-btn {
+  border-radius: 80px;
+}
+
+.control-btn {
+  padding: 1rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.btn-round {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.control-icon {
+  font-size: 1.2rem;
 }

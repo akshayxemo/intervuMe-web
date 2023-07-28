@@ -4,6 +4,17 @@ import { io } from "socket.io-client";
 import Peer from "simple-peer";
 import "../assets/css/videoCall.css";
 import pic from "../assets/demo-pic.jpg";
+import {
+  MdCancelPresentation,
+  MdMic,
+  MdMicOff,
+  MdOutlineCall,
+  MdOutlineCallEnd,
+  MdPresentToAll,
+  MdVideocam,
+  MdVideocamOff,
+} from "react-icons/md";
+
 import global from "global";
 import * as process from "process";
 global.process = process;
@@ -22,6 +33,7 @@ export default function VideoCall() {
   const [callerSignal, setCallerSignal] = useState();
   const [callEnded, setCallEnded] = useState(false);
   const [receivingCall, setReceivingCall] = useState(false);
+  const [called, setCalled] = useState(false);
 
   const myVideo = useRef();
   const userVideo = useRef();
@@ -59,7 +71,22 @@ export default function VideoCall() {
       setCallerSignal(data.signal);
     });
 
+    // const handleBeforeUnload = (e) => {
+    //   e.preventDefault();
+    //   socket.emit("leave-room", me);
+    // };
+    // window.addEventListener("onbeforeunload", handleBeforeUnload);
+
+    // socket.on("leave-room", (id) => {
+    //   console.log("user-leave");
+    //   if (userId == id) {
+    //     console.log("yes");
+    //     setUserId(null);
+    //   }
+    // });
+
     return () => {
+      // window.removeEventListener("onbeforeunload", handleBeforeUnload);
       socket.disconnect();
       setUserId(null);
     };
@@ -88,6 +115,7 @@ export default function VideoCall() {
     });
 
     connectionRef.current = peer;
+    setCalled(true);
   };
 
   const answerCall = () => {
@@ -110,6 +138,8 @@ export default function VideoCall() {
 
   const leaveCall = () => {
     setCallEnded(true);
+    setUserId(null);
+    setCalled(false);
     connectionRef.current.destroy();
   };
 
@@ -124,10 +154,10 @@ export default function VideoCall() {
   return (
     <>
       <div
-        className="container-lg bg-black"
+        className="container-lg-no-pd bg-black video-main-container"
         style={{ width: "100vw", height: "100vh" }}
       >
-        <div className="video-container container-lg-no-pd">
+        <div className="video-container container-lg">
           <div className="video-screen">
             {(stream && (
               <video
@@ -171,50 +201,65 @@ export default function VideoCall() {
             </div>
           </div>
         </div>
-        <div>
-          {callAccepted && !callEnded ? (
-            <button color="secondary" onClick={leaveCall}>
-              End Call
-            </button>
-          ) : null}
-          {userId && (
+        {userId && !called ? (
+          <div className="button-sets">
             <button
-              className="btn btn-green"
-              id={userId}
               onClick={() => callUser(userId)}
+              className="dial-in-btn control-btn bg-green color-white"
             >
-              Join {userId}
+              Join Meeting
             </button>
-          )}
-          {receivingCall && !callAccepted ? (
-            <div className="caller">
-              <h1>{name} is calling...</h1>
-              <button className="btn btn-lime-blue" onClick={answerCall}>
-                Answer
+          </div>
+        ) : called ? null : (
+          <div className="button-sets">
+            <p className="color-yellow">
+              {" "}
+              Please wait for the other participent...
+            </p>
+          </div>
+        )}
+        {called ? (
+          <div className="button-sets">
+            {receivingCall && !callAccepted ? (
+              <button
+                className="dial-in-btn control-btn bg-green color-white"
+                onClick={answerCall}
+              >
+                <MdOutlineCall className="control-icon" /> Dial in
               </button>
-            </div>
-          ) : null}
-        </div>
+            ) : (
+              <p className="waiting-text color-white">waiting ...</p>
+            )}
+            {callAccepted && !callEnded ? (
+              <button
+                className="control-btn btn-round bg-red color-white"
+                onClick={leaveCall}
+              >
+                {" "}
+                <MdOutlineCallEnd className="control-icon" />{" "}
+              </button>
+            ) : null}
+            <button className="control-btn btn-round color-white bg-red">
+              <MdMicOff className="control-icon" />
+            </button>
+            <button className="control-btn btn-round bg-gray color-white">
+              <MdMic className="control-icon" />
+            </button>
+            <button className="control-btn btn-round color-white bg-red">
+              <MdVideocamOff className="control-icon" />
+            </button>
+            <button className="control-btn btn-round bg-gray color-white">
+              <MdVideocam className="control-icon" />
+            </button>
+            <button className="control-btn btn-round color-white bg-red">
+              <MdCancelPresentation className="control-icon" />
+            </button>
+            <button className="control-btn btn-round bg-gray color-white">
+              <MdPresentToAll className="control-icon" />
+            </button>
+          </div>
+        ) : null}
       </div>
-      {/* {stream && (
-        <video
-          playsInline
-          muted
-          ref={myVideo}
-          autoPlay
-          style={{ width: "300px" }}
-        />
-      )} */}
-      {/* {callAccepted && (
-        <video
-          playsInline
-          ref={userVideo}
-          autoPlay
-          style={{ width: "300px" }}
-        />
-      )} */}
-
-      {/* <button onClick={stopStream}>Stop Stream</button> */}
     </>
   );
 }

@@ -58,6 +58,7 @@ export default function UserSessionCard(props) {
             <p className="status-info">{props.status}</p>
             <Link
               to={`/video-room?sessionToken=${props.token}`}
+              target="_blank"
               className="btn"
             >
               Join Meeting
