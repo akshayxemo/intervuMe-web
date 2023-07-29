@@ -5,24 +5,42 @@
   justify-content: space-between;
 }
 .video-container {
+  position: relative;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap-reverse;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
-  gap: 1%;
+  gap: 1rem;
+  height: 100%;
 }
-.video-screen {
-  position: relative;
-  width: 49.5%;
+.my-video-screen {
+  position: absolute;
+  z-index: 1;
+  left: 1rem;
+  bottom: 3rem;
+  width: 300px;
   aspect-ratio: 16/9;
+  background-color: var(--color-dark-blue);
+  border: 3px solid #fff;
+  box-shadow: rgba(0, 0, 0, 0.9) 0px 19px 38px, rgba(0, 0, 0, 0.5) 0px 15px 12px;
+  border-radius: 5px;
+  background-size: contain;
+  overflow: hidden;
+  object-fit: contain;
+}
+.user-video-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
   background-color: var(--color-dark-blue);
   border: 1px dotted var(--color-blue);
   border-radius: 5px;
-  background-size: cover;
+  background-size: contain;
   overflow: hidden;
-  object-fit: cover;
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .no-video-screen {
   width: 100%;
@@ -51,13 +69,19 @@
 }
 
 .button-sets {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
-  background-color: rgb(12, 12, 24);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  /* background-color: rgb(12, 12, 24); */
 }
 .dial-in-btn {
   border-radius: 80px;

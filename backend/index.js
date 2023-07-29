@@ -64,8 +64,9 @@ io.on("connection", (socket) => {
       socket.on("user-joined", (id) => {
         socket.to(roomId).emit("user-joined", id);
       });
-      socket.on("leave-room", (id) => {
-        socket.to(roomId).emit("leave-room", id);
+      socket.on("endCall", (signal) => {
+        socket.to(roomId).emit("endCallRecived", signal);
+        socket.leave(roomId);
       });
     }
   });
