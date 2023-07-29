@@ -1,7 +1,4 @@
 const Session = require("../models/session.model");
-// const jwt = require("jsonwebtoken");
-// const { getIoInstance } = require("./socket");
-// let socket = getIoInstance();
 
 const updateSessionStatuses = async (socket) => {
   console.log("cron...");

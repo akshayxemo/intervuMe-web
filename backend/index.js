@@ -34,8 +34,7 @@ const io = socketIO(http, {
 });
 // some require utilities
 app.set("socket", io);
-// console.log(io);
-// socket connection
+
 io.on("connection", (socket) => {
   console.log("New user connected:", socket.id);
   const { token } = socket.handshake.query;
@@ -89,7 +88,9 @@ io.on("connection", (socket) => {
   });
 });
 
+const updateSessionStatuses = require("./util/cron");
 cron.schedule("* * * * *", () => {
+  console.log("job..");
   updateSessionStatuses(io);
 });
 
