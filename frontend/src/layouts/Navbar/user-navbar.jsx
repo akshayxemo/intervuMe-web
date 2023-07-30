@@ -95,7 +95,7 @@ function UserNav(props) {
           </div>
           <div className="nav-text">Mentors</div>
         </Link>
-        <Link
+        {/* <Link
           to={`/tasks`}
           className={activeNav === "tasks" ? "nav nav-active" : "nav"}
           onClick={() => handleActiveNav("tasks")}
@@ -104,8 +104,8 @@ function UserNav(props) {
             <MdOutlineTask className="icon" />
           </div>
           <div className="nav-text">Tasks</div>
-        </Link>
-        <Link
+        </Link> */}
+        {/* <Link
           to={`/user/settings`}
           className={activeNav === "settings" ? "nav nav-active" : "nav"}
           onClick={() => handleActiveNav("settings")}
@@ -114,7 +114,7 @@ function UserNav(props) {
             <MdOutlineSettings className="icon" />
           </div>
           <div className="nav-text">Settings</div>
-        </Link>
+        </Link> */}
         <Link
           to={`/user/subscriptions`}
           className={activeNav === "subs" ? "nav nav-active" : "nav"}
@@ -125,7 +125,7 @@ function UserNav(props) {
           </div>
           <div className="nav-text">Subscription</div>
         </Link>
-        <Link
+        {/* <Link
           to={`/user/performance`}
           className={activeNav === "performance" ? "nav nav-active" : "nav"}
           onClick={() => handleActiveNav("performance")}
@@ -134,7 +134,7 @@ function UserNav(props) {
             <MdOutlineAnalytics className="icon" />
           </div>
           <div className="nav-text">performance</div>
-        </Link>
+        </Link> */}
       </div>
       <div className="navigations">
         <Link

@@ -3,6 +3,7 @@ const requireLogin = require("../middlewares/requireLogin");
 const requireMentorLogin = require("../middlewares/requireMentorLogin");
 const userDashboardController = require("../controllers/userDashboardController");
 const mentorDashboardController = require("../controllers/mentorDashboardController");
+
 router.get("/user/dashboard", requireLogin, userDashboardController.get);
 router.get("/mentors", requireLogin, userDashboardController.getMentors);
 router.post(
@@ -24,5 +25,5 @@ router.post(
   requireMentorLogin,
   mentorDashboardController.generateResult
 );
-
+router.get("/user-results", requireLogin, userDashboardController.getResults);
 module.exports = router;

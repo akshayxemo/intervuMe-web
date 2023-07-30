@@ -48,7 +48,8 @@ module.exports = {
     } = req.body;
     await Session.findById(sessionId)
       .then((foundSession) => {
-        if (foundSession.status !== "completed") {
+        console.log(foundSession);
+        if (foundSession.resultStatus === "not published") {
           if (
             foundSession.userId.toString() == userId.toString() &&
             foundSession.mentorId.toString() == req.user._id.toString()
@@ -58,10 +59,11 @@ module.exports = {
                 { _id: foundSession._id },
                 {
                   result: {
-                    technicalSkill: Number(technicalSkill),
-                    problemSolving: Number(problemSolving),
-                    communicationSkill: Number(communicationSkill),
+                    technicalSkill: parseFloat(technicalSkill),
+                    problemSolving: parseFloat(problemSolving),
+                    communicationSkill: parseFloat(communicationSkill),
                   },
+                  resultStatus: "published",
                   status: "completed",
                 }
               )
@@ -74,7 +76,7 @@ module.exports = {
                     .to(foundSession.userId.toString())
                     .emit(
                       "sessionNotification",
-                      "your session is completed and result is given"
+                      "your session has been completed and result published"
                     );
                   res.status(200).send("result generated successfully");
                 })

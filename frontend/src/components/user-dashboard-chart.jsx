@@ -73,6 +73,8 @@ function CustomTooltip({ active, payload, label }) {
 }
 
 function UserDashboardChart(props) {
+  console.log("component");
+  console.log(props.data);
   return (
     <>
       <ResponsiveContainer width="100%" height={300}>
@@ -114,7 +116,7 @@ function UserDashboardChart(props) {
             axisLine={false}
             tickLine={false}
             tickCount={5}
-            domain={[1, 5]}
+            domain={[0, 5]}
             tickFormatter={(str) => {
               const data = Number(str);
               if (data !== 0) {
@@ -144,7 +146,7 @@ function UserDashboardChart(props) {
           />
           <Area
             type="monotone"
-            dataKey="communication"
+            dataKey="communicationSkill"
             stroke="#EA4335"
             fillOpacity={0.2}
             fill="url(#colorCS)"

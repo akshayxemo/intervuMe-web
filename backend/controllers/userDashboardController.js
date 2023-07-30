@@ -1,4 +1,5 @@
 const Session = require("../models/session.model");
+const mongoose = require("mongoose");
 const { Mentor } = require("../models/mentor.model");
 const { User } = require("../models/user.model");
 const jwt = require("jsonwebtoken");
@@ -45,7 +46,10 @@ module.exports = {
           mentorId: "$mentorDetails._id",
           mentorName: "$mentorDetails.username",
           mentorRole: "$mentorDetails.role",
+          mentorEmail: "$mentorDetails.emailId",
           sessionToken: 1,
+          resultStatus: 1,
+          result: 1,
         },
       },
     ])
@@ -124,6 +128,31 @@ module.exports = {
       })
       .catch((err) => {
         res.status(400).send({ error: err, sessions: null });
+      });
+  },
+  getResults: async (req, res) => {
+    await Session.aggregate([
+      {
+        $match: {
+          userId: req.user._id,
+          resultStatus: "published",
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          date: "$sessionDate", // Renaming sessionDate to date in the result
+          result: 1,
+        },
+      },
+    ])
+      .sort({ sessionDate: 1 })
+      .then((foundSession) => {
+        console.log(foundSession);
+        res.status(200).send(foundSession);
+      })
+      .catch((error) => {
+        res.status(400).json("error : " + error);
       });
   },
 };

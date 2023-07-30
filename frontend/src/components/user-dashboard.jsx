@@ -2,28 +2,30 @@ import demoImg from "../assets/demo-img.png";
 import "../assets/css/user-dashboard.css";
 import UserDashboardChart from "./user-dashboard-chart";
 import UserSessionCard from "./card-user-session";
-import { subDays } from "date-fns";
+// import { subDays } from "date-fns";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const data = [];
-function randomNumber(min, max) {
-  return (Math.random() * (max - min) + min).toFixed(2);
-}
+// const data = [];
+// function randomNumber(min, max) {
+//   return (Math.random() * (max - min) + min).toFixed(2);
+// }
 
-for (let num = 7; num >= 0; num--) {
-  data.push({
-    date: subDays(new Date(), num).toISOString(),
-    technicalSkill: randomNumber(1, 5),
-    problemSolving: randomNumber(1, 5),
-    communication: randomNumber(1, 5),
-  });
-}
+// for (let num = 7; num >= 0; num--) {
+//   data.push({
+//     date: subDays(new Date(), num).toISOString(),
+//     technicalSkill: randomNumber(1, 5),
+//     problemSolving: randomNumber(1, 5),
+//     communication: randomNumber(1, 5),
+//   });
+// }
 function UserDashboard() {
   const [userdata, setUserData] = useState(null);
   const [sessionData, setSessionData] = useState([]);
   const [updateSession, setUpdateSession] = useState();
+  const [data, setData] = useState([]);
+  const roughData = [];
   const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchData = async () => {
@@ -58,8 +60,36 @@ function UserDashboard() {
         console.error(error);
       }
     };
+
+    const searchResults = async () => {
+      await axios
+        .get("http://localhost:3000/user-results", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          console.log(response.data);
+          console.log(data);
+          if (roughData.length === 0) {
+            response.data.forEach((item) => {
+              roughData.push({
+                date: item.date,
+                technicalSkill: item.result.technicalSkill,
+                problemSolving: item.result.problemSolving,
+                communicationSkill: item.result.communicationSkill,
+              });
+            });
+          }
+          roughData.sort((a, b) => new Date(a.date) - new Date(b.date));
+          console.log(roughData);
+          setData(roughData);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
     // Function to fetch data from the server
     fetchData();
+    searchResults();
   }, [updateSession]);
 
   useEffect(() => {
@@ -101,7 +131,13 @@ function UserDashboard() {
         <div className="performance-chart">
           <div className="performance-header">
             <h1 className="performance-title">performance</h1>
-            <UserDashboardChart data={data} />
+            {data.length !== 0 ? (
+              <UserDashboardChart data={data} />
+            ) : (
+              <div className="No-session">
+                You dont have any performance result to show
+              </div>
+            )}
           </div>
         </div>
         <div className="interview-sessions">
@@ -113,12 +149,16 @@ function UserDashboard() {
               return (
                 <UserSessionCard
                   key={item._id}
+                  id={item._id}
                   name={item.mentorName}
                   role={item.mentorRole}
+                  email={item.mentorEmail}
                   date={item.sessionDate}
                   time={item.sessionTime}
                   status={item.status}
                   token={item.sessionToken}
+                  result={item.result}
+                  resultStatus={item.resultStatus}
                 />
               );
             })}

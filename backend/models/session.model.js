@@ -35,6 +35,11 @@ const sessionSchema = new mongoose.Schema(
       problemSolving: Number,
       communicationSkill: Number,
     },
+    resultStatus: {
+      type: String,
+      enum: ["not published", "published"],
+      default: "not published",
+    },
   },
   {
     timestamps: true,

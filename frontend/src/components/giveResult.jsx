@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdOutlineMail } from "react-icons/md";
@@ -13,6 +13,7 @@ export default function GiveResult() {
   const [technicalSkill, setTechnicalSkill] = useState("");
   const [problemSolving, setProblemSolving] = useState("");
   const [communication, setCommunication] = useState("");
+  const [resultGiven, setResultGiven] = useState(false);
 
   const getMenteeDetails = async () => {
     await axios
@@ -64,6 +65,7 @@ export default function GiveResult() {
           setCommunication("");
           setTechnicalSkill("");
           setProblemSolving("");
+          setResultGiven(true);
         })
         .catch((err) => {
           console.error(err);
@@ -73,6 +75,9 @@ export default function GiveResult() {
     }
   };
 
+  if (resultGiven) {
+    return <Navigate to="/mentor/dashboard" replace />;
+  }
   return (
     <>
       <div className="container-lg result-wrap">
