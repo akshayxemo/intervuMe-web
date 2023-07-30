@@ -6,29 +6,16 @@ const updateSessionStatuses = async (socket) => {
     // Fetch all sessions from the database
     const sessions = await Session.find({
       // userId: userId,
-      status: { $in: ["upcoming", "ongoing"] },
+      status: "upcoming",
     });
+    // console.log("cron found : " + sessions);
     const currentDate = new Date();
 
     for (const session of sessions) {
       const sessionDateTime = await new Date(`${session.sessionDate}`);
       const timeDifference = sessionDateTime - currentDate;
       // console.log(`session : ${session._id}, D: ${timeDifference}`);
-      if (timeDifference < -3600000 && session.status !== "completed") {
-        // Session is within the next hour, update status to "completed" or other logic
-        await Session.updateOne(
-          { _id: session._id },
-          { $set: { status: "completed" } }
-        );
-        // Emit the updated session data to connected clients via Socket.IO
-        console.log(session.userId);
-        await socket
-          .to(session.userId.toString())
-          .emit("sessionUpdateds", session);
-        await socket
-          .to(session.userId.toString())
-          .emit("sessionNotification", "your session is completed");
-      } else if (
+      if (
         timeDifference <= 0 &&
         session.status !== "ongoing" &&
         session.status !== "completed"

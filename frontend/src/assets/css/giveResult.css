@@ -1,0 +1,55 @@
+.result-wrap {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dark-blue);
+}
+.result-back-image {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  opacity: 0.2;
+  background-image: url(../windows-p74ndnYWRY4-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.result-card {
+  position: relative;
+  z-index: 2;
+  min-width: 250px;
+  width: 400px;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: #fff;
+}
+.resultent-person-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.result-input-fields {
+  margin-top: 1rem;
+  padding: 1rem 0;
+  border-top: 2px dotted var(--border-light);
+}
+.skills-result-box {
+  padding: 10px 0;
+}
+.skills-result-box > p {
+  margin-bottom: 5px;
+}
+.email-info {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+}

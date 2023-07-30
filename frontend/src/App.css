@@ -178,6 +178,9 @@
 .color-gray {
   color: var(--secondary-font-color);
 }
+.color-black {
+  color: var(--color-dark-blue);
+}
 .bg-black {
   background-color: #000;
 }

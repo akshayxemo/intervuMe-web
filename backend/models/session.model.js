@@ -30,6 +30,11 @@ const sessionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    result: {
+      technicalSkill: Number,
+      problemSolving: Number,
+      communicationSkill: Number,
+    },
   },
   {
     timestamps: true,

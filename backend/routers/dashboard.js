@@ -17,4 +17,12 @@ router.get(
   requireMentorLogin,
   mentorDashboardController.get
 );
+
+router.post("/user-details", userDashboardController.getUserDetails);
+router.post(
+  "/generate-result",
+  requireMentorLogin,
+  mentorDashboardController.generateResult
+);
+
 module.exports = router;

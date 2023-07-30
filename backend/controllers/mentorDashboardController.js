@@ -37,4 +37,65 @@ module.exports = {
         res.status(200).send({ username: req.user.username, error: err });
       });
   },
+  generateResult: async (req, res) => {
+    const socket = req.app.get("socket");
+    const {
+      userId,
+      sessionId,
+      technicalSkill,
+      problemSolving,
+      communicationSkill,
+    } = req.body;
+    await Session.findById(sessionId)
+      .then((foundSession) => {
+        if (foundSession.status !== "completed") {
+          if (
+            foundSession.userId.toString() == userId.toString() &&
+            foundSession.mentorId.toString() == req.user._id.toString()
+          ) {
+            if (technicalSkill && problemSolving && communicationSkill) {
+              Session.updateOne(
+                { _id: foundSession._id },
+                {
+                  result: {
+                    technicalSkill: Number(technicalSkill),
+                    problemSolving: Number(problemSolving),
+                    communicationSkill: Number(communicationSkill),
+                  },
+                  status: "completed",
+                }
+              )
+                .then((session) => {
+                  console.log(session);
+                  socket
+                    .to(foundSession.userId.toString())
+                    .emit("sessionUpdateds", session);
+                  socket
+                    .to(foundSession.userId.toString())
+                    .emit(
+                      "sessionNotification",
+                      "your session is completed and result is given"
+                    );
+                  res.status(200).send("result generated successfully");
+                })
+                .catch((error) => {
+                  console.log(error);
+                  res.status(400).json("error:" + error);
+                });
+            } else {
+              res.status(400).send({ error: "incomplete fields" });
+            }
+          } else {
+            res.status(400).send({ error: "user and mentor not matched" });
+          }
+        } else {
+          res
+            .status(400)
+            .send({ error: "Result for this session is already published" });
+        }
+      })
+      .catch((error) => {
+        res.status(400).json("error:" + error);
+      });
+  },
 };

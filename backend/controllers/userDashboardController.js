@@ -1,7 +1,28 @@
 const Session = require("../models/session.model");
 const { Mentor } = require("../models/mentor.model");
+const { User } = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 module.exports = {
+  getUserDetails: async (req, res) => {
+    console.log(req.body.userId);
+    const { userId } = req.body;
+    await User.findOne({ _id: userId })
+      .then((foundUser) => {
+        console.log(foundUser);
+        const userDetails = {
+          userId: foundUser._id.toString(),
+          username: foundUser.username,
+          gender: foundUser.gender,
+          emailId: foundUser.emailId,
+          subscription: foundUser.subscription,
+        };
+        res.status(200).json(userDetails);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(401).send({ error: error.toString() });
+      });
+  },
   get: async (req, res) => {
     await Session.aggregate([
       { $match: { userId: req.user._id } },

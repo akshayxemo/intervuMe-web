@@ -16,6 +16,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Loader from "../components/loader";
 import VideoCall from "../components/videoCall";
+import MentorVideoCall from "../components/mentorVideoCall";
+import GiveResult from "../components/giveResult";
 
 const Router = () => {
   return (
@@ -74,6 +76,18 @@ const Router = () => {
           }
         />
         <Route path="/video-room" element={<VideoCall />} />
+        <Route
+          path="/mentor/video-room/:sessionId/:menteeId"
+          element={<MentorVideoCall />}
+        />
+        <Route
+          path="/mentor/give-result/:sessionId/:id"
+          element={
+            <ProtectedRoute>
+              <GiveResult />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -147,17 +147,19 @@ export default function VideoCall() {
     setCallAccepted(false);
     setCalled(false);
     socket.emit("endCall", "Call ended");
-    connectionRef.current.destroy();
+    if (connectionRef.current) {
+      connectionRef.current.destroy();
+    }
     navigate("/");
   };
 
   // Function to stop the stream
-  const stopStream = () => {
-    if (stream && stream.getTracks) {
-      stream.getTracks().forEach((track) => track.stop());
-      setStream(null); // Clear the stream from the state
-    }
-  };
+  // const stopStream = () => {
+  //   if (stream && stream.getTracks) {
+  //     stream.getTracks().forEach((track) => track.stop());
+  //     setStream(null); // Clear the stream from the state
+  //   }
+  // };
 
   const handleMicOnOff = () => {
     setMicStatus(!micStatus);

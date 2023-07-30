@@ -95,6 +95,8 @@ function MentorDashboard() {
               return (
                 <MentorSessionCard
                   key={item._id}
+                  sessionId={item._id}
+                  userId={item.userId}
                   name={item.userName}
                   date={item.sessionDate}
                   time={item.sessionTime}

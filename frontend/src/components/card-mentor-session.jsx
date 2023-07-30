@@ -5,6 +5,8 @@ import { format, parseISO } from "date-fns";
 import { Link } from "react-router-dom";
 
 MentorSessionCard.propTypes = {
+  sessionId: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
@@ -55,7 +57,7 @@ export default function MentorSessionCard(props) {
             ></div>
             <p className="status-info">{props.status}</p>
             <Link
-              to={`/video-room?sessionToken=${props.token}`}
+              to={`/mentor/video-room/${props.sessionId}/${props.userId}?sessionToken=${props.token}`}
               target="_blank"
               className="btn"
             >
