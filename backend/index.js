@@ -40,17 +40,31 @@ io.on("connection", (socket) => {
   const { token } = socket.handshake.query;
   // Handle join room event
   socket.on("joinRoom", async (token) => {
-    const { userId } = await jwt.verify(token, process.env.JWT_SECRET_KEY);
-    console.log(`joined room ${userId}`);
-    socket.join(userId); // Join the specific room (using userId as the room name)
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (error, payload) => {
+      if (error) {
+        console.log(error);
+        return;
+      } else {
+        const { userId } = payload;
+        console.log(`joined room ${userId}`);
+        socket.join(userId); // Join the specific room (using userId as the room name)
+      }
+    });
   });
 
   socket.on("joinRoomMentorTimeUpdate", async (token, id) => {
-    const { userId } = await jwt.verify(token, process.env.JWT_SECRET_KEY);
-    console.log(`joined room ${id}`);
-    if (userId) {
-      socket.join(`mentorSessionTimeUpdate${id}`);
-    } // Join the specific room (using userId as the room name)
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (error, payload) => {
+      if (error) {
+        console.log(error);
+        return;
+      } else {
+        const { userId } = payload;
+        console.log(`joined room ${id}`);
+        if (userId) {
+          socket.join(`mentorSessionTimeUpdate${id}`);
+        } // Join the specific room (using userId as the room name)
+      }
+    });
   });
 
   socket.on("join-video-call", async (token) => {
@@ -66,6 +80,9 @@ io.on("connection", (socket) => {
       socket.on("endCall", (signal) => {
         socket.to(roomId).emit("endCallRecived", signal);
         socket.leave(roomId);
+      });
+      socket.on("mic-off", (val) => {
+        socket.to(roomId).emit("mic-off", val);
       });
     }
   });
@@ -89,6 +106,7 @@ io.on("connection", (socket) => {
 });
 
 const updateSessionStatuses = require("./util/cron");
+const { error } = require("console");
 cron.schedule("* * * * *", () => {
   console.log("job..");
   updateSessionStatuses(io);

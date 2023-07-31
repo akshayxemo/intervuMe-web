@@ -98,10 +98,13 @@ function MentorDashboard() {
                   sessionId={item._id}
                   userId={item.userId}
                   name={item.userName}
+                  email={item.userEmail}
                   date={item.sessionDate}
                   time={item.sessionTime}
                   status={item.status}
                   token={item.sessionToken}
+                  result={item.result}
+                  resultStatus={item.resultStatus}
                 />
               );
             })}

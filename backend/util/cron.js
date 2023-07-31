@@ -30,7 +30,13 @@ const updateSessionStatuses = async (socket) => {
           .to(session.userId.toString())
           .emit("sessionUpdateds", session);
         await socket
+          .to(session.mentorId.toString())
+          .emit("sessionUpdateds", session);
+        await socket
           .to(session.userId.toString())
+          .emit("sessionNotification", "you have an Ongoing Session");
+        await socket
+          .to(session.mentorId.toString())
           .emit("sessionNotification", "you have an Ongoing Session");
       } else if (
         timeDifference <= 60000 &&
@@ -40,6 +46,9 @@ const updateSessionStatuses = async (socket) => {
         // Emit the updated session data to connected clients via Socket.IO
         await socket
           .to(session.userId.toString())
+          .emit("sessionNotification", "your session will start in 1 minute");
+        await socket
+          .to(session.mentorId.toString())
           .emit("sessionNotification", "your session will start in 1 minute");
       }
     }

@@ -90,6 +90,7 @@ function UserDashboard() {
     // Function to fetch data from the server
     fetchData();
     searchResults();
+    // window.location.reload();
   }, [updateSession]);
 
   useEffect(() => {
@@ -150,6 +151,7 @@ function UserDashboard() {
                 <UserSessionCard
                   key={item._id}
                   id={item._id}
+                  mentorId={item.mentorId}
                   name={item.mentorName}
                   role={item.mentorRole}
                   email={item.mentorEmail}

@@ -62,7 +62,7 @@ function MentorLoginForm() {
       {isLoading && <Loader />}
       <div className="form">
         <form onSubmit={handleSubmit}>
-          <h1 className="heading-2 text-center">Welcome Back!</h1>
+          <h1 className="heading-2 text-center">Welcome Back Mentor!</h1>
           <label htmlFor="email">Email Id</label>
           <br />
           <input

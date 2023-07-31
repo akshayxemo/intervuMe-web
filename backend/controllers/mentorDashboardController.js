@@ -22,7 +22,10 @@ module.exports = {
           status: 1,
           userId: "$userDetails._id",
           userName: "$userDetails.username",
+          userEmail: "$userDetails.emailId",
           sessionToken: 1,
+          resultStatus: 1,
+          result: 1,
         },
       },
     ])

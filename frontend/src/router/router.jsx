@@ -75,7 +75,10 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/video-room" element={<VideoCall />} />
+        <Route
+          path="/video-room/:sessionId/:mentorId"
+          element={<VideoCall />}
+        />
         <Route
           path="/mentor/video-room/:sessionId/:menteeId"
           element={<MentorVideoCall />}

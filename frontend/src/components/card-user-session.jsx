@@ -12,6 +12,7 @@ import { useState } from "react";
 
 UserSessionCard.propTypes = {
   id: PropTypes.string.isRequired,
+  mentorId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
@@ -19,7 +20,7 @@ UserSessionCard.propTypes = {
   time: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
-  result: PropTypes.object.isRequired,
+  result: PropTypes.object,
   resultStatus: PropTypes.string.isRequired,
 };
 
@@ -38,9 +39,6 @@ const labels = {
 
 export default function UserSessionCard(props) {
   const [showDetails, setShowDetails] = useState(false);
-  // console.log(
-  //   `date : ${format(parseISO(props.date), "eee, d MMM yyyy, hh:mm a")}`
-  // );
 
   const showResult = async () => {
     setShowDetails(!showDetails);
@@ -153,7 +151,7 @@ export default function UserSessionCard(props) {
             <p className="status-info">{props.status}</p>
             {props.status === "ongoing" ? (
               <Link
-                to={`/video-room?sessionToken=${props.token}`}
+                to={`/video-room/${props.id}/${props.mentorId}?sessionToken=${props.token}&mentorName=${props.name}`}
                 target="_blank"
                 className="btn"
                 style={{

@@ -25,6 +25,7 @@ export default function MentorVideoCall() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const sessionToken = searchParams.get("sessionToken");
+  const menteeName = searchParams.get("menteeName");
   const { sessionId, menteeId } = useParams();
 
   const [me, setMe] = useState("");
@@ -70,7 +71,7 @@ export default function MentorVideoCall() {
 
     socket.on("user-joined", (id) => {
       socket.emit("user-joined", socket.id);
-      setCallerInfo("User joined");
+      setCallerInfo(`${menteeName} joined`);
       setUserId(id);
     });
 
@@ -184,7 +185,13 @@ export default function MentorVideoCall() {
       >
         <div className="video-container container-lg-no-pd">
           <div className="my-video-screen">
-            {(stream && (
+            {!myVideoStatus ? (
+              <div className="my-no-video-screen">
+                <img src={pic} alt="" className="user-image" />
+                <h1 className="heading no-video-title color-white">You</h1>
+              </div>
+            ) : null}
+            {stream && (
               <video
                 playsInline
                 muted
@@ -192,17 +199,12 @@ export default function MentorVideoCall() {
                 autoPlay
                 style={{ width: "100%" }}
               />
-            )) || (
-              <div className="no-video-screen">
-                <img src={pic} alt="" className="user-image" />
-                <h1 className="heading no-video-title color-white">You</h1>
-              </div>
             )}
-            {stream && (
+            {stream && myVideoStatus ? (
               <div className="show-user-details">
                 <h3 className="show-user-title color-white">you</h3>
               </div>
-            )}
+            ) : null}
           </div>
           <div className="user-video-screen">
             {(callAccepted && (

@@ -25,6 +25,7 @@ export default function VideoCall() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const sessionToken = searchParams.get("sessionToken");
+  const mentorName = searchParams.get("mentorName");
 
   const [me, setMe] = useState("");
   const [socket, setSocket] = useState();
@@ -69,7 +70,7 @@ export default function VideoCall() {
 
     socket.on("user-joined", (id) => {
       socket.emit("user-joined", socket.id);
-      setCallerInfo("User joined");
+      setCallerInfo(`${mentorName} joined`);
       setUserId(id);
     });
 
@@ -81,7 +82,7 @@ export default function VideoCall() {
 
     socket.on("endCallRecived", (signal) => {
       console.log(signal);
-      setCallerInfo("User Leaved");
+      setCallerInfo(`${mentorName} Leaved`);
       setCallEnded(true);
       setCallAccepted(false);
       setCalled(false);
@@ -186,7 +187,13 @@ export default function VideoCall() {
       >
         <div className="video-container container-lg-no-pd">
           <div className="my-video-screen">
-            {(stream && (
+            {!myVideoStatus ? (
+              <div className="my-no-video-screen">
+                <img src={pic} alt="" className="user-image" />
+                <h1 className="heading no-video-title color-white">You</h1>
+              </div>
+            ) : null}
+            {stream && (
               <video
                 playsInline
                 muted
@@ -194,17 +201,12 @@ export default function VideoCall() {
                 autoPlay
                 style={{ width: "100%" }}
               />
-            )) || (
-              <div className="no-video-screen">
-                <img src={pic} alt="" className="user-image" />
-                <h1 className="heading no-video-title color-white">You</h1>
-              </div>
             )}
-            {stream && (
+            {stream && myVideoStatus ? (
               <div className="show-user-details">
                 <h3 className="show-user-title color-white">you</h3>
               </div>
-            )}
+            ) : null}
           </div>
           <div className="user-video-screen">
             {(callAccepted && (
