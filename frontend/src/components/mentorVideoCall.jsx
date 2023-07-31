@@ -5,13 +5,13 @@ import Peer from "simple-peer";
 import "../assets/css/videoCall.css";
 import pic from "../assets/demo-pic.jpg";
 import {
-  MdCancelPresentation,
+  // MdCancelPresentation,
   MdMic,
   MdMicOff,
   MdOutlineCall,
   MdOutlineCallEnd,
   MdOutlineClose,
-  MdPresentToAll,
+  // MdPresentToAll,
   MdVideocam,
   MdVideocamOff,
 } from "react-icons/md";
@@ -41,7 +41,7 @@ export default function MentorVideoCall() {
 
   const [micStatus, setMicStatus] = useState(true);
   const [myVideoStatus, setMyVideoStatus] = useState(true);
-  const [screenShare, setScreenShare] = useState(false);
+  // const [screenShare, setScreenShare] = useState(false);
 
   const myVideo = useRef();
   const userVideo = useRef();
@@ -154,25 +154,28 @@ export default function MentorVideoCall() {
     navigate(`/mentor/give-result/${sessionId}/${menteeId}`);
   };
 
-  // Function to stop the stream
-  // const stopStream = () => {
-  //   if (stream && stream.getTracks) {
-  //     stream.getTracks().forEach((track) => track.stop());
-  //     setStream(null); // Clear the stream from the state
-  //   }
-  // };
-
   const handleMicOnOff = () => {
     setMicStatus(!micStatus);
+    // Get the audio tracks from the stream
+    const audioTracks = stream.getAudioTracks();
+
+    // Mute/unmute all audio tracks based on the micStatus
+    audioTracks.forEach((track) => {
+      track.enabled = !micStatus;
+    });
   };
 
   const handleVideoOnOff = () => {
     setMyVideoStatus(!myVideoStatus);
+    // Get the video tracks from the stream
+    const videoTracks = stream.getVideoTracks();
+
+    // Enable/disable all video tracks based on the myVideoStatus
+    videoTracks.forEach((track) => {
+      track.enabled = !myVideoStatus;
+    });
   };
 
-  const handleScreenShare = () => {
-    setScreenShare(!screenShare);
-  };
   return (
     <>
       <div
@@ -297,7 +300,7 @@ export default function MentorVideoCall() {
               </button>
             )}
 
-            {(screenShare && (
+            {/* {(screenShare && (
               <button
                 className="control-btn btn-round color-white bg-red"
                 onClick={handleScreenShare}
@@ -311,7 +314,7 @@ export default function MentorVideoCall() {
               >
                 <MdPresentToAll className="control-icon" />
               </button>
-            )}
+            )} */}
           </div>
         ) : null}
       </div>

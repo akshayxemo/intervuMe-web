@@ -17,8 +17,8 @@
   position: absolute;
   z-index: 1;
   left: 1rem;
-  bottom: 3rem;
-  width: 300px;
+  bottom: 5rem;
+  width: 280px;
   aspect-ratio: 16/9;
   background-color: #222834;
   border: 2px solid #fff;
@@ -30,8 +30,9 @@
 }
 .user-video-screen {
   position: relative;
-  width: 100%;
-  height: 100%;
+  /* width: 100%; */
+  height: 85%;
+  aspect-ratio: 16/9;
   background-color: var(--color-dark);
   border: 1px dotted var(--color-blue);
   border-radius: 5px;
@@ -43,8 +44,8 @@
   align-items: center;
 }
 .no-video-screen {
-  width: 100%;
-  height: 100%;
+  height: 85%;
+  aspect-ratio: 16/9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,8 +81,7 @@
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  /* background-color: rgb(12, 12, 24); */
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
 }
 .dial-in-btn {
   border-radius: 80px;
@@ -94,6 +94,10 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  /* border: 0.5px solid #000; */
+}
+.control-btn:hover {
+  outline: 1px solid var(--border-light);
 }
 .btn-round {
   aspect-ratio: 1/1;
