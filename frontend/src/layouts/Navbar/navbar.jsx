@@ -42,6 +42,9 @@ function Navbar() {
                   Login &nbsp; &rarr;
                 </Link>
               )}
+              <Link to={`/mentor/login`} style={{ fontWeight: "600" }}>
+                Login &nbsp; &rarr;
+              </Link>
             </p>
           </div>
         </div>
