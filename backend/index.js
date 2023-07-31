@@ -105,12 +105,12 @@ io.on("connection", (socket) => {
   });
 });
 
-const updateSessionStatuses = require("./util/cron");
-const { error } = require("console");
-cron.schedule("* * * * *", () => {
-  console.log("job..");
-  updateSessionStatuses(io);
-});
+// const updateSessionStatuses = require("./util/cron");
+// const { error } = require("console");
+// cron.schedule("* * * * *", () => {
+//   console.log("job..");
+//   updateSessionStatuses(io);
+// });
 
 // routers
 app.use(require("./routers/auth"));
