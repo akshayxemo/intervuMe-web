@@ -39,7 +39,7 @@ function MentorCard({ id, data }) {
   const getBookedSessionDate = async () => {
     await axios
       .post(
-        "http://localhost:3000/mentor/session",
+        import.meta.env.VITE_API_URL + "/mentor/session",
         {
           mentorId: id,
           current: currentDate,
@@ -68,7 +68,7 @@ function MentorCard({ id, data }) {
     console.log("end", endOfWeek(currentDate));
     getBookedSessionDate();
     console.log(bookedDates);
-    const socket = io("http://localhost:3000", {
+    const socket = io(import.meta.env.VITE_API_URL + "", {
       query: { token: token },
     });
     try {
@@ -155,7 +155,7 @@ function MentorCard({ id, data }) {
       };
       console.log(session);
       await axios
-        .post("http://localhost:3000/session/add", session, {
+        .post(import.meta.env.VITE_API_URL + "/session/add", session, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,

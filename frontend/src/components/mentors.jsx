@@ -8,7 +8,7 @@ function Mentors() {
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get("http://localhost:3000/mentors", {
+      .get(import.meta.env.VITE_API_URL + "/mentors", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

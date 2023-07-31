@@ -17,7 +17,7 @@ export default function GiveResult() {
 
   const getMenteeDetails = async () => {
     await axios
-      .post("http://localhost:3000/user-details", { userId: id })
+      .post(import.meta.env.VITE_API_URL + "/user-details", { userId: id })
       .then((response) => {
         console.log(response.data);
         setUserDetails(response.data);
@@ -57,7 +57,7 @@ export default function GiveResult() {
       };
       console.log(form);
       await axios
-        .post("http://localhost:3000/generate-result", form, {
+        .post(import.meta.env.VITE_API_URL + "/generate-result", form, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         })
         .then((response) => {

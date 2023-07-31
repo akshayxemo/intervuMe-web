@@ -41,7 +41,7 @@ function SignupForm() {
 
         //sending data to the server
         axios
-          .post("http://localhost:3000/signup", formData)
+          .post(import.meta.env.VITE_API_URL + "/signup", formData)
           .then((response) => {
             // Handle successful response
             setConfirmPassword("");

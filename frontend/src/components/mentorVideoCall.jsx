@@ -59,7 +59,7 @@ export default function MentorVideoCall() {
         console.log(err);
       });
 
-    const socket = io("http://localhost:3000");
+    const socket = io(import.meta.env.VITE_API_URL + "");
     setSocket(socket);
     console.log("useeffectd");
 

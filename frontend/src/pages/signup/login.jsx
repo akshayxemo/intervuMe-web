@@ -32,7 +32,7 @@ function LoginForm() {
       setIsLoading(true);
       console.log(formData);
       axios
-        .post("http://localhost:3000/login", formData)
+        .post(import.meta.env.VITE_API_URL + "/login", formData)
         .then((response) => {
           // Handle successful response
           setFormData(initialFormData);

@@ -15,7 +15,7 @@ function MentorDashboard() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/mentor/dashboard",
+          import.meta.env.VITE_API_URL + "/mentor/dashboard",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -49,7 +49,7 @@ function MentorDashboard() {
   }, [updateSession]);
 
   useEffect(() => {
-    const socket = io("http://localhost:3000", {
+    const socket = io(import.meta.env.VITE_API_URL + "", {
       query: { token: token },
     });
     try {

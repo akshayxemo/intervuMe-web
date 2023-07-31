@@ -21,7 +21,7 @@ function ForgetPasswordForm() {
       setFormError("");
       console.log(formData);
       axios
-        .post("http://localhost:3000/forget-password", formData)
+        .post(import.meta.env.VITE_API_URL + "/forget-password", formData)
         .then((response) => {
           // Handle successful response
           setFormError("");

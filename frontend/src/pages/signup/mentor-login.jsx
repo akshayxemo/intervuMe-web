@@ -32,7 +32,7 @@ function MentorLoginForm() {
       setIsLoading(true);
       console.log(formData);
       axios
-        .post("http://localhost:3000/mentor/login", formData)
+        .post(import.meta.env.VITE_API_URL + "/mentor/login", formData)
         .then((response) => {
           // Handle successful response
           setFormData(initialFormData);

@@ -31,7 +31,7 @@ function UserDashboard() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/user/dashboard",
+          import.meta.env.VITE_API_URL + "/user/dashboard",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -63,7 +63,7 @@ function UserDashboard() {
 
     const searchResults = async () => {
       await axios
-        .get("http://localhost:3000/user-results", {
+        .get(import.meta.env.VITE_API_URL + "/user-results", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
@@ -94,7 +94,7 @@ function UserDashboard() {
   }, [updateSession]);
 
   useEffect(() => {
-    const socket = io("http://localhost:3000", {
+    const socket = io(import.meta.env.VITE_API_URL + "", {
       query: { token: token },
     });
     try {
