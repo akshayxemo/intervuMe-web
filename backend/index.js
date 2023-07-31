@@ -60,6 +60,7 @@ io.on("connection", (socket) => {
         const { userId } = payload;
         console.log(`joined room ${userId}`);
         socket.join(userId); // Join the specific room (using userId as the room name)
+        socket.broadcast.emit("i-am-joined", userId);
       }
     });
   });
@@ -113,16 +114,25 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (error, payload) => {
+      if (error) {
+        console.log(error);
+        return;
+      } else {
+        const { userId } = payload;
+        socket.leave(userId);
+        socket.broadcast.emit("i-am-leaving", userId);
+      }
+    });
     socket.broadcast.emit("callEnded");
   });
 });
 
-// const updateSessionStatuses = require("./util/cron");
-// const { error } = require("console");
-// cron.schedule("* * * * *", () => {
-//   console.log("job..");
-//   updateSessionStatuses(io);
-// });
+const updateSessionStatuses = require("./util/cron");
+cron.schedule("* * * * *", () => {
+  console.log("job..");
+  updateSessionStatuses(io);
+});
 
 // routers
 app.use(require("./routers/auth"));

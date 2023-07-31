@@ -9,9 +9,10 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
 
-  const login = (token, linkTo) => {
+  const login = (token, linkTo, role) => {
     setToken(token);
     localStorage.setItem("token", token);
+    localStorage.setItem("role", role);
     <Navigate to={linkTo} />;
     // navigate("");
   };
@@ -19,6 +20,7 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     <Navigate to="/" replace />;
   };
 

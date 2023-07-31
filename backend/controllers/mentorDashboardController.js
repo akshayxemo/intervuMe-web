@@ -71,7 +71,7 @@ module.exports = {
                 }
               )
                 .then((session) => {
-                  console.log(session);
+                  // console.log(session);
                   socket
                     .to(foundSession.userId.toString())
                     .emit("sessionUpdateds", session);

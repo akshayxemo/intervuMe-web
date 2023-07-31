@@ -36,10 +36,10 @@ function LoginForm() {
         .then((response) => {
           // Handle successful response
           setFormData(initialFormData);
-          localStorage.setItem("token", response.data.token);
+          // localStorage.setItem("token", response.data.token);
           setTimeout(() => {
             setIsLoading(false);
-            login(response.data.token, "/user/dashboard"); // Update context with authenticated user
+            login(response.data.token, "/user/dashboard", "mentee"); // Update context with authenticated user
           }, 1500);
           console.log(response.data);
         })

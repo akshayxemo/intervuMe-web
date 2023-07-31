@@ -63,10 +63,28 @@ function MentorCard({ id, data }) {
       });
   };
 
+  const isMentorFollowed = async () => {
+    await axios
+      .get(import.meta.env.VITE_API_URL + `/isfollowed/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setUserAdded(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     setAvailableTimes(data.availableTimes);
     console.log("end", endOfWeek(currentDate));
     getBookedSessionDate();
+    isMentorFollowed();
     console.log(bookedDates);
     const socket = io(import.meta.env.VITE_API_URL + "", {
       query: { token: token },
@@ -96,7 +114,22 @@ function MentorCard({ id, data }) {
   }, [data]);
 
   const handleUserAdded = () => {
-    setUserAdded(!userAdded);
+    axios
+      .post(
+        import.meta.env.VITE_API_URL + "/follow",
+        { mentorId: id, name: data.username },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        setUserAdded(res.data);
+      })
+      .catch((error) => console.log(error));
   };
 
   const filterPassedTime = (time) => {

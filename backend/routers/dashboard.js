@@ -26,4 +26,11 @@ router.post(
   mentorDashboardController.generateResult
 );
 router.get("/user-results", requireLogin, userDashboardController.getResults);
+router.get(
+  "/isfollowed/:mentorId",
+  requireLogin,
+  userDashboardController.isFollowed
+);
+router.post("/follow", requireLogin, userDashboardController.follow);
+router.get("/followings", requireLogin, userDashboardController.findFollowings);
 module.exports = router;

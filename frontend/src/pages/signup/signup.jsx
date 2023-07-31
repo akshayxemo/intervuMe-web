@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./__test__/signup.css";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import Loader from "../../components/loader";
+import { useAuth } from "../../router/AuthContext";
 function SignupForm() {
   const navigate = useNavigate();
   const initialFormData = {
@@ -17,7 +18,12 @@ function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [submitError, setSubmitError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { isAuthenticated } = useAuth();
 
+  if (isAuthenticated()) {
+    // Redirect to dashboard if already logged in
+    return <Navigate to="/user/dashboard" />;
+  }
   const handleConfirmPasswordInput = (e) => {
     setConfirmPassword(e.target.value);
   };

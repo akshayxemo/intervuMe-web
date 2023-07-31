@@ -155,4 +155,56 @@ module.exports = {
         res.status(400).json("error : " + error);
       });
   },
+  isFollowed: async (req, res) => {
+    const mentorId = req.params.mentorId;
+    User.findOne({ "following.id": mentorId })
+      .then((mentor) => {
+        console.log("O.........................K");
+        if (mentor) {
+          res.status(200).send(true);
+        } else {
+          res.status(200).send(false);
+        }
+      })
+      .catch((error) => res.status(400).send(error));
+    console.log("haha ..........................." + mentorId);
+  },
+  follow: async (req, res) => {
+    const { mentorId, name } = req.body;
+    const followObject = {
+      id: mentorId,
+      name: name,
+    };
+    User.findOneAndUpdate(
+      { _id: req.user._id },
+      {
+        $addToSet: { following: followObject },
+      },
+      { new: true }
+    )
+      .then((updateFollowing) => {
+        if (updateFollowing) {
+          res.status(200).send(true);
+        } else {
+          res.status(200).send(false);
+        }
+      })
+      .catch((error) => res.status(400).send(error));
+  },
+  findFollowings: async (req, res) => {
+    User.findOne({ _id: req.user._id }, { following: 1 })
+      .then((user) => {
+        if (user) {
+          console.log("User's following list:", user);
+          res.status(200).send(user);
+        } else {
+          console.log("User not found with the given ID.");
+          res.status(200).send(false);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        res.status(400).send(error);
+      });
+  },
 };

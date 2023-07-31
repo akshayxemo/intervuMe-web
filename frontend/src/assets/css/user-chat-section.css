@@ -87,3 +87,29 @@
     font-size: 12px;
   }
 }
+
+.chat-member-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.chat-member {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.msg-count {
+  width: 10px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}

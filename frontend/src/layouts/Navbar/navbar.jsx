@@ -6,9 +6,11 @@ import { useAuth } from "../../router/AuthContext";
 function Navbar() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(false);
+  const [role, setRole] = useState();
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
+    setRole(localStorage.getItem("role"));
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
       const threshold = 300;
@@ -34,17 +36,28 @@ function Navbar() {
           <div>
             <p>
               {isAuthenticated() ? (
-                <Link to={`/user/dashboard`} style={{ fontWeight: "600" }}>
+                <Link
+                  to={
+                    role === "mentee" ? `/user/dashboard` : `/mentor/dashboard`
+                  }
+                  style={{ fontWeight: "600" }}
+                >
                   Dashboard &nbsp; &rarr;
                 </Link>
               ) : (
-                <Link to={`/auth/login`} style={{ fontWeight: "600" }}>
-                  Login &nbsp; &rarr;
-                </Link>
+                <div>
+                  <Link
+                    to={`/mentor/login`}
+                    style={{ fontWeight: "600", marginRight: "2rem" }}
+                    className="color-blue"
+                  >
+                    Mentor Login
+                  </Link>
+                  <Link to={`/auth/login`} style={{ fontWeight: "600" }}>
+                    Login &nbsp; &rarr;
+                  </Link>
+                </div>
               )}
-              <Link to={`/mentor/login`} style={{ fontWeight: "600" }}>
-                Login &nbsp; &rarr;
-              </Link>
             </p>
           </div>
         </div>
