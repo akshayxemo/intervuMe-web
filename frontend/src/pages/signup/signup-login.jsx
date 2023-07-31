@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./__test__/Signup-login.css";
+import "./__test__/signup-login.css";
 import { MdOutlineArrowCircleLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
 
