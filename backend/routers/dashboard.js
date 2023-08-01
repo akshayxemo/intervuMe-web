@@ -33,4 +33,9 @@ router.get(
 );
 router.post("/follow", requireLogin, userDashboardController.follow);
 router.get("/followings", requireLogin, userDashboardController.findFollowings);
+router.get(
+  "/mentor/followings",
+  requireMentorLogin,
+  mentorDashboardController.findFollowings
+);
 module.exports = router;

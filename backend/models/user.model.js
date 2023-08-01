@@ -28,20 +28,6 @@ const userSchema = new Schema(
       default: "Free",
     },
     subscriptionToken: String,
-    following: [
-      {
-        id: {
-          type: Schema.Types.ObjectId,
-          ref: "Mentor",
-          required: true,
-          unique: true,
-        },
-        name: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
   },
   {
     timestamps: true,

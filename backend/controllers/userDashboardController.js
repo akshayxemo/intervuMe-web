@@ -1,7 +1,7 @@
 const Session = require("../models/session.model");
-const mongoose = require("mongoose");
 const { Mentor } = require("../models/mentor.model");
 const { User } = require("../models/user.model");
+const Follow = require("../models/follow.model");
 const jwt = require("jsonwebtoken");
 module.exports = {
   getUserDetails: async (req, res) => {
@@ -157,10 +157,13 @@ module.exports = {
   },
   isFollowed: async (req, res) => {
     const mentorId = req.params.mentorId;
-    User.findOne({ "following.id": mentorId })
-      .then((mentor) => {
+    if (!req.user._id) {
+      return res.status(400).send("Your id not found");
+    }
+    Follow.findOne({ userId: req.user._id, mentorId: mentorId })
+      .then((result) => {
         console.log("O.........................K");
-        if (mentor) {
+        if (result) {
           res.status(200).send(true);
         } else {
           res.status(200).send(false);
@@ -170,33 +173,45 @@ module.exports = {
     console.log("haha ..........................." + mentorId);
   },
   follow: async (req, res) => {
+    const socket = req.app.get("socket");
     const { mentorId, name } = req.body;
-    const followObject = {
-      id: mentorId,
-      name: name,
-    };
-    User.findOneAndUpdate(
-      { _id: req.user._id },
-      {
-        $addToSet: { following: followObject },
-      },
-      { new: true }
-    )
-      .then((updateFollowing) => {
-        if (updateFollowing) {
-          res.status(200).send(true);
-        } else {
-          res.status(200).send(false);
-        }
-      })
-      .catch((error) => res.status(400).send(error));
+    if (req.user._id) {
+      Follow.findOne({ userId: req.user._id, mentorId: mentorId })
+        .then((found) => {
+          if (found) {
+            return res.status(200).send("you already follows this id");
+          }
+          const followObject = new Follow({
+            userId: req.user._id,
+            userName: req.user.username,
+            mentorId: mentorId,
+            mentorName: name,
+          });
+          followObject
+            .save()
+            .then(() => {
+              socket.to(mentorId).emit("new-follow", req.user._id);
+              socket.to(req.user._id.toString()).emit("new-follow", mentorId);
+              return res.status(200).send(true);
+            })
+            .catch((error) => res.status(400).send(error));
+        })
+        .catch((error) => res.status(400).send(error));
+    } else {
+      res.status(400).send("id not found");
+    }
   },
   findFollowings: async (req, res) => {
-    User.findOne({ _id: req.user._id }, { following: 1 })
-      .then((user) => {
-        if (user) {
-          console.log("User's following list:", user);
-          res.status(200).send(user);
+    if (!req.user._id) {
+      return res.status(400).send("Your id not found");
+    }
+    Follow.find({ userId: req.user._id })
+      .populate("mentorId", "role")
+      .then((follows) => {
+        console.log(follows);
+        if (follows.length) {
+          console.log("User's following list:", follows);
+          res.status(200).send(follows);
         } else {
           console.log("User not found with the given ID.");
           res.status(200).send(false);

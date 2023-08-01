@@ -50,6 +50,7 @@ app.set("socket", io);
 io.on("connection", (socket) => {
   console.log("New user connected:", socket.id);
   const { token } = socket.handshake.query;
+
   // Handle join room event
   socket.on("joinRoom", async (token) => {
     jwt.verify(token, process.env.JWT_SECRET_KEY, (error, payload) => {
@@ -112,18 +113,14 @@ io.on("connection", (socket) => {
     io.to(data.to).emit("callAccepted", data.signal);
   });
 
+  // socket.to().emit("newMessage", newChat);
+  socket.on("join-chat", (id) => {
+    socket.join(`chat-${id}`);
+    console.log("join-chat-trigger......." + id);
+  });
+
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
-    jwt.verify(token, process.env.JWT_SECRET_KEY, (error, payload) => {
-      if (error) {
-        console.log(error);
-        return;
-      } else {
-        const { userId } = payload;
-        socket.leave(userId);
-        socket.broadcast.emit("i-am-leaving", userId);
-      }
-    });
     socket.broadcast.emit("callEnded");
   });
 });
@@ -137,6 +134,7 @@ cron.schedule("* * * * *", () => {
 // routers
 app.use(require("./routers/auth"));
 app.use(require("./routers/dashboard"));
+app.use(require("./routers/chat"));
 
 // listening code
 http.listen(port, () => {

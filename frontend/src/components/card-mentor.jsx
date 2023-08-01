@@ -73,7 +73,9 @@ function MentorCard({ id, data }) {
       })
       .then((response) => {
         console.log(response.data);
-        setUserAdded(response.data);
+        if (typeof response.data === "boolean") {
+          setUserAdded(response.data);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -86,6 +88,7 @@ function MentorCard({ id, data }) {
     getBookedSessionDate();
     isMentorFollowed();
     console.log(bookedDates);
+
     const socket = io(import.meta.env.VITE_API_URL + "", {
       query: { token: token },
     });
@@ -127,7 +130,9 @@ function MentorCard({ id, data }) {
       )
       .then((res) => {
         console.log(res.data);
-        setUserAdded(res.data);
+        if (typeof res.data === "boolean") {
+          setUserAdded(res.data);
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -255,10 +260,7 @@ function MentorCard({ id, data }) {
               onClick={handleUserAdded}
             />
           ) : (
-            <MdOutlineHowToReg
-              className="mentor-chat color-green"
-              onClick={handleUserAdded}
-            />
+            <MdOutlineHowToReg className="mentor-chat color-green" />
           )}
         </div>
         <div className="mentor-booking">

@@ -18,6 +18,7 @@ import Loader from "../components/loader";
 import VideoCall from "../components/videoCall";
 import MentorVideoCall from "../components/mentorVideoCall";
 import GiveResult from "../components/giveResult";
+import MentorChatSection from "../components/mentor-chat-section";
 
 const Router = () => {
   return (
@@ -70,7 +71,7 @@ const Router = () => {
               <Dashboard
                 Nav={MentorNav}
                 Body={<MentorDashboard />}
-                Chat={<UserChat />}
+                Chat={<MentorChatSection />}
               />
             </ProtectedRoute>
           }

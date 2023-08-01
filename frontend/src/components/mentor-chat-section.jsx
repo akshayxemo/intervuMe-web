@@ -2,16 +2,15 @@ import { useEffect, useState, useRef } from "react";
 import "../assets/css/user-chat-section.css";
 import axios from "axios";
 import PropTypes from "prop-types";
-// import { io } from "socket.io-client";
-import MentorChat from "./mentorChat";
+import UserChat from "./userChat";
 
 ChatMemberCard.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  mentorDetails: PropTypes.object.isRequired,
+  userDetails: PropTypes.object.isRequired,
 };
-// const socket = io(import.meta.env.VITE_API_URL + "");
-function ChatMemberCard({ name, id, mentorDetails }) {
+
+function ChatMemberCard({ name, id, userDetails }) {
   const initialOnlineState = false;
   const onlineRef = useRef(initialOnlineState);
   const [openChat, setOpenChat] = useState(false);
@@ -22,10 +21,10 @@ function ChatMemberCard({ name, id, mentorDetails }) {
   return (
     <>
       {openChat && (
-        <MentorChat
+        <UserChat
           setOpenChat={setOpenChat}
           name={name}
-          mentorDetails={mentorDetails}
+          userDetails={userDetails}
         />
       )}
       <div
@@ -45,11 +44,11 @@ function ChatMemberCard({ name, id, mentorDetails }) {
   );
 }
 
-export default function UserChat() {
+export default function MentorChatSection() {
   const [followingMentors, setFollowingMentors] = useState([]);
   const findFollowings = async () => {
     await axios
-      .get(import.meta.env.VITE_API_URL + "/followings", {
+      .get(import.meta.env.VITE_API_URL + "/mentor/followings", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -74,9 +73,9 @@ export default function UserChat() {
             <>
               <ChatMemberCard
                 key={item._id}
-                name={item.mentorName}
-                id={item.mentorId._id}
-                mentorDetails={item.mentorId}
+                name={item.userName}
+                id={item.userId._id}
+                userDetails={item.userId}
               />
             </>
           );

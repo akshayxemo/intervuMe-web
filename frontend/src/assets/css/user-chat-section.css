@@ -5,8 +5,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
 .reciver-details {
+  position: relative;
   padding: 1.5rem 1rem;
   border-radius: 8px;
   background-color: #f3f2f2;
@@ -70,6 +76,7 @@
   background-color: #f3f2f2;
   resize: none;
   padding: 1rem;
+  word-break: break-all;
 }
 .btn-send {
   height: 100%;
@@ -113,3 +120,48 @@
   aspect-ratio: 1/1;
   border-radius: 50%;
 }
+.chat-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.msg-wrap {
+  padding: 0 8px;
+  margin-top: 1rem;
+}
+.msg-date {
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: end;
+}
+.msg-body {
+  padding: 1rem;
+  margin-top: 5px;
+  /* overflow-wrap: break-word; */
+  word-wrap: break-word;
+  /* word-break: break-all; */
+  /* white-space: pre-wrap; */
+}
+.msg-from {
+  background-color: #e4effa;
+  border-radius: 0 8px 8px 8px;
+}
+.msg-to {
+  background-color: #f3f2f2;
+  border-radius: 8px 0 8px 8px;
+}
+.sender {
+  text-align: end;
+}
+/* 
+.sender-date {
+  text-align: start;
+} */

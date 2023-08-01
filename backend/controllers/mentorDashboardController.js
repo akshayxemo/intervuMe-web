@@ -1,5 +1,7 @@
 const Session = require("../models/session.model");
 const { User } = require("../models/user.model");
+const Follow = require("../models/follow.model");
+
 module.exports = {
   get: async (req, res) => {
     await Session.aggregate([
@@ -101,6 +103,27 @@ module.exports = {
       })
       .catch((error) => {
         res.status(400).json("error:" + error);
+      });
+  },
+  findFollowings: async (req, res) => {
+    if (!req.user._id) {
+      return res.status(400).send("Your id not found");
+    }
+    Follow.find({ mentorId: req.user._id })
+      .populate("userId", "emailId")
+      .then((follows) => {
+        console.log(follows);
+        if (follows.length) {
+          console.log("Mentor's follower list:", follows);
+          res.status(200).send(follows);
+        } else {
+          console.log("Mentor not found with the given ID.");
+          res.status(200).send(false);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        res.status(400).send(error);
       });
   },
 };

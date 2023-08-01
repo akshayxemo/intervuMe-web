@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const { User, validate } = require("../models/user.model");
 const { Mentor, MentorValidate } = require("../models/mentor.model");
 const jwt = require("jsonwebtoken");
+const Online = require("../models/online.model");
 // const sendMail = require("../util/sendMail");
 
 module.exports = {
@@ -37,17 +38,25 @@ module.exports = {
       .save()
       .then(() => {
         console.log("user id :" + newUser._id);
-        // Generate the JWT token
-        const token = jwt.sign(
-          { userId: newUser._id },
-          process.env.JWT_SECRET_KEY
-        );
-        // sendMail(
-        //   req.body.email,
-        //   "[InterVuMe] SIGN UP Success ✅",
-        //   `CONGRATULATIONS!! ${req.body.name}\nYou have successfully signed up with us`
-        // );
-        res.json({ token });
+        const newOnline = new Online({
+          id: newUser._id,
+        });
+        newOnline
+          .save()
+          .then(() => {
+            // Generate the JWT token
+            const token = jwt.sign(
+              { userId: newUser._id },
+              process.env.JWT_SECRET_KEY
+            );
+            // sendMail(
+            //   req.body.email,
+            //   "[InterVuMe] SIGN UP Success ✅",
+            //   `CONGRATULATIONS!! ${req.body.name}\nYou have successfully signed up with us`
+            // );
+            res.json({ token });
+          })
+          .catch((err) => res.status(400).json("Error: " + err));
       })
       .catch((err) => res.status(400).json("Error: " + err));
   },
@@ -86,17 +95,25 @@ module.exports = {
       .save()
       .then(() => {
         console.log("Mentor id :" + newMentor._id);
-        // Generate the JWT token
-        const token = jwt.sign(
-          { userId: newMentor._id },
-          process.env.JWT_SECRET_KEY
-        );
-        // sendMail(
-        //   req.body.email,
-        //   "[InterVuMe] SIGN UP Success ✅",
-        //   `CONGRATULATIONS!! ${req.body.name}\nYou have successfully signed up with us`
-        // );
-        res.json({ token });
+        const newOnline = new Online({
+          id: newMentor._id,
+        });
+        newOnline
+          .save()
+          .then(() => {
+            // Generate the JWT token
+            const token = jwt.sign(
+              { userId: newMentor._id },
+              process.env.JWT_SECRET_KEY
+            );
+            // sendMail(
+            //   req.body.email,
+            //   "[InterVuMe] SIGN UP Success ✅",
+            //   `CONGRATULATIONS!! ${req.body.name}\nYou have successfully signed up with us`
+            // );
+            res.json({ token });
+          })
+          .catch((err) => res.status(400).json("Error: " + err));
       })
       .catch((err) => res.status(400).json("Error: " + err));
   },
