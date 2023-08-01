@@ -11,8 +11,8 @@ ChatMemberCard.propTypes = {
 };
 
 function ChatMemberCard({ name, id, userDetails }) {
-  const initialOnlineState = false;
-  const onlineRef = useRef(initialOnlineState);
+  // const initialOnlineState = false;
+  // const onlineRef = useRef(initialOnlineState);
   const [openChat, setOpenChat] = useState(false);
 
   const handleChatBox = () => {
@@ -34,11 +34,11 @@ function ChatMemberCard({ name, id, userDetails }) {
       >
         <div className="chat-member">
           <h1>{name}</h1>
-          {(onlineRef.current && <p className="color-green">Online</p>) || (
+          {/* {(onlineRef.current && <p className="color-green">Online</p>) || (
             <p className="color-gray">Offline</p>
-          )}
+          )} */}
         </div>
-        <div className="bg-red msg-count"></div>
+        {/* <div className="bg-red msg-count"></div> */}
       </div>
     </>
   );

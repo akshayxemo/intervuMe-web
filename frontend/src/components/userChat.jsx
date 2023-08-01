@@ -23,7 +23,7 @@ export default function UserChat({ setOpenChat, name, userDetails }) {
 
   useEffect(() => {
     // Inside useEffect, initialize the socket connection when the component mounts
-    socket.current = io("http://localhost:3000"); // Change the URL based on your backend socket.io server address
+    socket.current = io(`${import.meta.env.VITE_API_URL}`); // Change the URL based on your backend socket.io server address
 
     socket.current.on("connect", () => {
       // Emit join-chat event to join the specific chat room

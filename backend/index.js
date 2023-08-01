@@ -20,7 +20,7 @@ const dbConnect = require("./config/db.config");
 dbConnect();
 
 // middlewares
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
