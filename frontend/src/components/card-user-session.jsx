@@ -152,7 +152,6 @@ export default function UserSessionCard(props) {
             {props.status === "ongoing" ? (
               <Link
                 to={`/video-room/${props.id}/${props.mentorId}?sessionToken=${props.token}&mentorName=${props.name}`}
-                target="_blank"
                 className="btn"
                 style={{
                   padding: "0.5rem",

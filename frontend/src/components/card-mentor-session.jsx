@@ -146,7 +146,6 @@ export default function MentorSessionCard(props) {
             {props.status === "ongoing" ? (
               <Link
                 to={`/mentor/video-room/${props.sessionId}/${props.userId}?sessionToken=${props.token}&menteeName=${props.name}`}
-                target="_blank"
                 className="btn"
                 style={{
                   padding: "0.5rem",
