@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 // Set up Socket.IO server
 const io = socketIO(http, {
   cors: {
-    origin: "http://localhost:5173", // Allow requests from this origin
+    origin: process.env.FRONTEND_API, // Allow requests from this origin
     methods: ["GET", "POST"], // Allow only specified HTTP methods (you can add more if needed)
     credentials: true, // Allow credentials (e.g., cookies, authentication headers)
   },
