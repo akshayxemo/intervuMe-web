@@ -202,11 +202,6 @@ export default function VideoCall() {
                 style={{ width: "100%" }}
               />
             )}
-            {stream && myVideoStatus ? (
-              <div className="show-user-details">
-                <h3 className="show-user-title color-white">you</h3>
-              </div>
-            ) : null}
           </div>
           <div className="user-video-screen">
             {(callAccepted && (
