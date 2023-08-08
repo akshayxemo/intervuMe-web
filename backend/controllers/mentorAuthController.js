@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const joi = require("joi");
 const jwt = require("jsonwebtoken");
 const { Mentor, MentorValidate } = require("../models/mentor.model");
+const Online = require("../models/online.model");
 const PasswordComplexity = require("joi-password-complexity");
 
 const validate = (data) => {
