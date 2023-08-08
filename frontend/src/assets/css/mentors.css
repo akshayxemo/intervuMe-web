@@ -1,4 +1,4 @@
-.mentors-header{
+.mentors-header {
   width: 100%;
   margin-top: 2rem;
   padding: 1.5rem 0;
@@ -8,10 +8,10 @@
   align-items: center;
   border-bottom: 2px dotted var(--border-light);
 }
-.mentors-title{
+.mentors-title {
   font-size: 2rem;
 }
-.mentors-desc{
+.mentors-desc {
   margin-top: 1rem;
 }
 .mentorbody {
@@ -26,7 +26,7 @@
 }
 
 .mentor-card {
-  /* max-width: 48%; */
+  max-width: 33%;
   flex: 0 1 auto;
   letter-spacing: -1px;
   padding: 1.5rem;

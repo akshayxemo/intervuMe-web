@@ -5,10 +5,10 @@ import { useState, useEffect } from "react";
 import {
   MdOutlineDashboard,
   MdOutlineSupervisorAccount,
-  MdOutlineTask,
-  MdOutlineSettings,
+  // MdOutlineTask,
+  // MdOutlineSettings,
   MdOutlineSubscriptions,
-  MdOutlineAnalytics,
+  // MdOutlineAnalytics,
   MdOutlineInfo,
   MdOutlineDoNotDisturbOn,
   MdOutlineClose,

@@ -19,6 +19,8 @@ import VideoCall from "../components/videoCall";
 import MentorVideoCall from "../components/mentorVideoCall";
 import GiveResult from "../components/giveResult";
 import MentorChatSection from "../components/mentor-chat-section";
+import AdminDashboard from "../pages/Dashboard/AdminDashboard";
+import AdminLogin from "../pages/signup/adminLogin";
 
 const Router = () => {
   return (
@@ -91,6 +93,18 @@ const Router = () => {
               <GiveResult />
             </ProtectedRoute>
           }
+        />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/login"
+          element={<SignupLoginPage page={<AdminLogin />} />}
         />
       </Routes>
     </BrowserRouter>

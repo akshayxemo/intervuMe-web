@@ -7,8 +7,10 @@ import {
   FaLinkedin,
   FaInstagram,
 } from "react-icons/fa6";
+import { useAuth } from "../../router/AuthContext";
 
 function Footer() {
+  const { isAuthenticated } = useAuth();
   return (
     <>
       <div className="container-lg bg-black">
@@ -32,6 +34,22 @@ function Footer() {
             </a>
           </div>
         </div>
+        {isAuthenticated() ? (
+          ""
+        ) : (
+          <div
+            style={{
+              paddingBottom: "1rem",
+              width: "100%",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
+            <Link to={`/admin/login`} className="btn btn-black-blue">
+              Admin Login
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

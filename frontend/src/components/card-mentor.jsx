@@ -271,7 +271,7 @@ function MentorCard({ id, data }) {
             maxDate={lastDayOfMonth}
             showTimeSelect
             timeFormat="hh:mm a"
-            timeIntervals={60}
+            timeIntervals={15}
             timeCaption="Time"
             filterTime={filterPassedTime}
             timeClassName={getTimeClass}

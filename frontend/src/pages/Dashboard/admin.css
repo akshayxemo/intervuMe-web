@@ -1,0 +1,56 @@
+.admin-body,
+.admin-head {
+  padding: 2rem 0.5rem;
+}
+.admin-heading {
+  font-size: 2rem;
+}
+.navigation-bar {
+  border-top: 1px dotted var(--border-light);
+  border-bottom: 1px dotted var(--border-light);
+  margin-top: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.admin-nav-logo {
+  width: 50px;
+  height: 50px;
+  aspect-ratio: 1/1;
+}
+.day {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.time-slot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: rgb(195, 233, 255);
+  padding: 0.5rem;
+  border-radius: 50px;
+  color: var(--color-blue);
+}
+.delete-time-slot {
+  cursor: pointer;
+}
+.adminDatepicker {
+  width: 90px;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+.select-time {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.form-admin {
+  padding: 1rem;
+  /* width: 400px; */
+}
