@@ -178,40 +178,43 @@
   color: var(--color-red) !important;
 }
 .color-green {
-  color: var(--color-green);
+  color: var(--color-green) !important;
 }
 .color-yellow {
-  color: var(--color-yellow);
+  color: var(--color-yellow) !important;
 }
 .color-blue {
-  color: var(--color-blue);
+  color: var(--color-blue) !important;
 }
 .color-white {
-  color: #fff;
+  color: #fff !important;
 }
 .color-gray {
-  color: var(--secondary-font-color);
+  color: var(--secondary-font-color) !important;
 }
 .color-black {
-  color: var(--color-dark-blue);
+  color: var(--color-dark-blue) !important;
 }
 .bg-black {
-  background-color: #000;
+  background-color: #000 !important;
 }
 .bg-green {
-  background-color: var(--color-green);
+  background-color: var(--color-green) !important;
 }
 .bg-yellow {
-  background-color: var(--color-yellow);
+  background-color: var(--color-yellow) !important;
 }
 .bg-red {
-  background-color: var(--color-red);
+  background-color: var(--color-red) !important;
 }
 .bg-blue {
-  background-color: var(--color-blue);
+  background-color: var(--color-blue) !important;
 }
 .bg-gray {
-  background-color: #2c3143;
+  background-color: #2c3143 !important;
+}
+.bg-white{
+  background-color: #fff !important;
 }
 .display-none {
   display: none;

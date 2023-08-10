@@ -21,6 +21,7 @@ import GiveResult from "../components/giveResult";
 import MentorChatSection from "../components/mentor-chat-section";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
 import AdminLogin from "../pages/signup/adminLogin";
+import Subscription from "../pages/Subscription/subscription";
 
 const Router = () => {
   return (
@@ -59,6 +60,14 @@ const Router = () => {
           element={
             <ProtectedRoute>
               <Dashboard Nav={UserNav} Body={<Mentors />} Chat={<UserChat />} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/subscriptions"
+          element={
+            <ProtectedRoute>
+              <Subscription />
             </ProtectedRoute>
           }
         />

@@ -1,0 +1,36 @@
+.subscription-sec{
+  padding: 4rem 0;
+  margin-top: 4rem;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.subscription-card{
+  min-width: 250px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+.subs-heading{
+  font-size: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px dotted var(--border-light);
+}
+.plan-details{
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.plan-item{
+  font-size: 1.1rem;
+}
+.flexfit{
+  min-height:100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
