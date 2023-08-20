@@ -22,6 +22,9 @@ import MentorChatSection from "../components/mentor-chat-section";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
 import AdminLogin from "../pages/signup/adminLogin";
 import Subscription from "../pages/Subscription/subscription";
+import SubscriptionSuccess from "../pages/Subscription/success";
+import UpdateSub from "../pages/Subscription/updateSub";
+import SubscriptionCancel from "../pages/Subscription/cancel";
 
 const Router = () => {
   return (
@@ -71,6 +74,9 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/subscription" element={<UpdateSub />} />
+        <Route path="/subscription/success" element={<SubscriptionSuccess />} />
+        <Route path="/subscription/cancel" element={<SubscriptionCancel />} />
         <Route
           path="/mentor/login"
           element={<SignupLoginPage page={<MentorLoginForm />} />}

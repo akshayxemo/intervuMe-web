@@ -135,6 +135,7 @@ cron.schedule("* * * * *", () => {
 app.use(require("./routers/auth"));
 app.use(require("./routers/dashboard"));
 app.use(require("./routers/chat"));
+app.use(require("./routers/payment"));
 
 // listening code
 http.listen(port, () => {
