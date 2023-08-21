@@ -34,7 +34,7 @@ module.exports = {
         );
 
         // reset password link
-        const link = `http://localhost:3000/reset-password/${foundUser._id}/${token}`;
+        const link = `${process.env.FRONTEND_API}/reset-password/${foundUser._id}/${token}`;
         console.log(link);
 
         // sending email
