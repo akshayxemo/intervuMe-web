@@ -30,7 +30,43 @@ installation link -> [NodeJs](https://nodejs.org/en) ⋅ [Git](https://git-scm.c
   <img src="https://img.shields.io/badge/Socket.io-010101?logo=socketdotio&logoColor=white&style=for-the-badge" height="40" alt="socketio logo"  />
 </div>
   
+# Setup
+- Backend setup
+> change directory to backend
+```
+cd backend
+```
+> install the modules
+```
+npm install
+```
+- Frontend setup
+> change directory to frontend
+```
+cd frontend
+```
+> install the modules
+```
+npm install
+```
+# Run
+### Run Backend
+```
+node index.js
+```
+- if you had nodemon installed use this in git bash
+```
+nodemon index.js
+```
 
+- install nodemon if not already have it
+```
+npm i nodemon
+```
+### Run Frontend
+```
+npm run dev
+```
 
 # Future Scope
 We will add a testing system so that user can test their knowledge and prepare themself by giving mock test (MCQ based). Admin can see more details about their sites and have more functionalities. Mentor login can be done using a single request to ther server and sending the actual signup link to its
