@@ -1,6 +1,5 @@
 # intervuMe-web
-It is a platform where peoples can prepare for interview by attending real life 1:1 live interview session with mentors and getting a performance result. User can also chat with mentors as well. Mentors can be signed up from the admin dashboard and can set their own time schedule for mettings.
-This platform also provide performance visualization based on the interview results.
+This platform offers users the opportunity to prepare for interviews through 1:1 live sessions with mentors, receive performance feedback, and chat with mentors. Mentors can sign up through the admin dashboard and set their availability for meetings. Additionally, the platform integrates subscription payments using the Stripe API and provides performance visualization based on interview results.
 - live at [here](https://intervu-me.onrender.com/)
   
 # Prerequisite
