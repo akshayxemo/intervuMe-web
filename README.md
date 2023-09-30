@@ -112,6 +112,7 @@ npm run dev
     VITE_API_URL=http://localhost:3000
     ```
     here localhost 3000 referes the backend running port if you use another port make sure to add that instead of this.
+    NOTE: when testing locally its preferable to use the same browser as mentor and use incognito mode of that same browser as mentee or vice versa for video calling otherwise it will not work properly.
 
 <hr>
 <em> 
@@ -128,8 +129,8 @@ npm run dev
   ![Screenshot 2023-09-30 131825](https://github.com/akshayxemo/intervuMe-web/assets/83893825/7bed3d19-d3f0-45b4-9836-3f9be60576be)
   
 ## Engaging into the video call
-  ![Screenshot 2023-09-30 131845](https://github.com/akshayxemo/intervuMe-web/assets/83893825/ee7bfd5d-e4bc-436e-bb58-a8d3489ae576)
-  ![Screenshot 2023-09-30 131857](https://github.com/akshayxemo/intervuMe-web/assets/83893825/fbd64a68-190b-495c-b898-cf582299b483)
+  ![Screenshot-2023-09-30-131845](https://github.com/akshayxemo/intervuMe-web/assets/83893825/b89da327-0c82-4a35-ae5c-a1b67995a5a2)
+  ![Screenshot-2023-09-30-131857](https://github.com/akshayxemo/intervuMe-web/assets/83893825/efb897fc-04e4-46db-b71a-44b834770997)
 
 ## Mentor giving the performance result after the end of the meeting
   ![Screenshot 2023-09-30 131932](https://github.com/akshayxemo/intervuMe-web/assets/83893825/c07e8468-a86a-4b4d-bdbb-a2a1e38ed8cc)
