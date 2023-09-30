@@ -125,5 +125,8 @@ npm run dev
   ![Screenshot 2023-09-30 132008](https://github.com/akshayxemo/intervuMe-web/assets/83893825/608b4e33-fd51-4e7a-b9eb-54bee339d97e)
   ![Screenshot 2023-09-30 132024](https://github.com/akshayxemo/intervuMe-web/assets/83893825/b59a0207-ddf7-4aca-957f-371610873d0d)
 
+## Admin dashboard
+  ![Screenshot 2023-09-30 141653](https://github.com/akshayxemo/intervuMe-web/assets/83893825/2d94de02-f68a-4df1-b5bf-c40fce2473ad)
+
 # 📌 Future Scope
 We will add a Mock test system so that user can test their knowledge and prepare themself by giving mock test (MCQ based). Admin can see more details about their sites and have more functionalities. Mentor login can be done using a single request to ther server and sending the actual signup link to its given mail id. Also try to incorporate the error issue regarding the self video preview window in the video meeting. The Subscription plans are there and also it will enflict the current pack but there is no connection with the actual functionalities, meaning with any kind of subscription user able to leverage all the functionalities right now, the restrictions are not made yet. Also much work needed to give a admin dashboard a decent UI and informations.
