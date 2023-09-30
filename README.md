@@ -73,7 +73,7 @@ npm i nodemon
 npm run dev
 ```
 
-# 🌐 How to Test the system Online at Live deployed link
+# 🌐 How to Test the system Online
 
 - Step 1: Sign Up using your any email ID in a browser.
 - Step 2: Sign Up pre registerd mentor in another different broweser or PC or device.
@@ -88,10 +88,12 @@ npm run dev
 - Step 8: Now you can freely chat realtime with mentor (test it with both side it works).
 - Step 9: To check the subscription options use the **demo card** information such as 4242424242424242 **DD/MM** 4242 **CVV** 424
 
-# 🖥️ To test the system offline at local device
-- Step 1: register a mentee.
-- Step 2: register a admin using the postman while running the system on your device via {{localhost url}}/admin/signup
+# 🖥️ To test the system offline with local device
+- Step 1: follow the installation, setup and running instructions to get the project in your device
+- Step 2: register a mentee.
+- Step 3: register a admin using the postman while running the system on your device via {{localhost url}}/admin/signup
   - use raw JSON data to make a POST request explained below
+  
   ```
   {
     "name":"your name",
@@ -103,8 +105,19 @@ npm run dev
   - Step 3: Login as Admin. To do that go at the bottom of the web page in the footer you will see the admin login button if not signed in already with other methods.
   - Step 4: Add a mentor from the admin dashboard.
   - Step 5: Test the system.
+  - Step 6: make sure to modify the backend env file as your need since its a dummy env file for testing purpose. you need to add your relevent keys and information to make it work.
+  - Step 7: make sure to add a env file in frontend and add this
+    
+    ```
+    VITE_API_URL=http://localhost:3000
+    ```
+    here localhost 3000 referes the backend running port if you use another port make sure to add that instead of this.
 
-**⚠️ Addressing some problem that occour after deploying the site that is when you engaging in the video call for some reason you cant see your own video in the mini video box while you are atively streaming your video (But working perfectly fine in the local device). If you can find any solution to that feel free to connect me and let me know. Also in this deployed platform refreashing will show 404 page not fpund error since its a problem regarding the react router.**
+<hr>
+<em> 
+⚠️ Addressing some problem that occour after deploying the site that is when you engaging in the video call for some reason you cant see your own video in the mini video box while you are atively streaming your video (But working perfectly fine in the local device). If you can find any solution to that feel free to connect me and let me know. Also in this deployed platform refreashing will show 404 page not fpund error since its a problem regarding the react router. 
+</em>
+<hr>
 
 # 🖼️ Screenshots
 ## Dashboard
