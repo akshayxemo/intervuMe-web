@@ -32,7 +32,7 @@ installation link -> [NodeJs](https://nodejs.org/en) ⋅ [Git](https://git-scm.c
   <img src="https://img.shields.io/badge/Socket.io-010101?logo=socketdotio&logoColor=white&style=for-the-badge" height="40" alt="socketio logo"  />
 </div>
   
-# Setup
+# ⚙️ Setup
 - Backend setup
 > change directory to backend
 ```
@@ -51,7 +51,7 @@ cd frontend
 ```
 npm install
 ```
-# Run
+# ▶️ Run
 ### Run Backend
 ```
 node index.js
@@ -70,7 +70,7 @@ npm i nodemon
 npm run dev
 ```
 
-# How to Test the system 
+# 🌐 How to Test the system Online at Live deployed link
 
 - Step 1: Sign Up using your any email ID in a browser.
 - Step 2: Sign Up pre registerd mentor in another different broweser or PC or device.
@@ -85,9 +85,25 @@ npm run dev
 - Step 8: Now you can freely chat realtime with mentor (test it with both side it works).
 - Step 9: To check the subscription options use the **demo card** information such as 4242424242424242 **DD/MM** 4242 **CVV** 424
 
+# 🖥️ To test the system offline at local device
+- Step 1: register a mentee.
+- Step 2: register a admin using the postman while running the system on your device via {{localhost url}}/admin/signup
+  - use raw JSON data to make a POST request explained below
+  ```
+  {
+    "name":"your name",
+    "email":"your email id",
+    "gender":"your gender as male/female/other",
+    "password":"your password"
+  }
+  ```
+  - Step 3: Login as Admin. To do that go at the bottom of the web page in the footer you will see the admin login button if not signed in already with other methods.
+  - Step 4: Add a mentor from the admin dashboard.
+  - Step 5: Test the system.
+
 **⚠️ Addressing some problem that occour after deploying the site that is when you engaging in the video call for some reason you cant see your own video in the mini video box while you are atively streaming your video (But working perfectly fine in the local device). If you can find any solution to that feel free to connect me and let me know. Also in this deployed platform refreashing will show 404 page not fpund error since its a problem regarding the react router.**
 
-# Screenshots
+# 🖼️ Screenshots
 ## Dashboard
   ![Screenshot 2023-09-30 131954](https://github.com/akshayxemo/intervuMe-web/assets/83893825/341932fa-2501-4729-a547-624c7d77cb20)
   
@@ -109,5 +125,5 @@ npm run dev
   ![Screenshot 2023-09-30 132008](https://github.com/akshayxemo/intervuMe-web/assets/83893825/608b4e33-fd51-4e7a-b9eb-54bee339d97e)
   ![Screenshot 2023-09-30 132024](https://github.com/akshayxemo/intervuMe-web/assets/83893825/b59a0207-ddf7-4aca-957f-371610873d0d)
 
-# Future Scope
+# 📌 Future Scope
 We will add a Mock test system so that user can test their knowledge and prepare themself by giving mock test (MCQ based). Admin can see more details about their sites and have more functionalities. Mentor login can be done using a single request to ther server and sending the actual signup link to its given mail id. Also try to incorporate the error issue regarding the self video preview window in the video meeting. The Subscription plans are there and also it will enflict the current pack but there is no connection with the actual functionalities, meaning with any kind of subscription user able to leverage all the functionalities right now, the restrictions are not made yet.
