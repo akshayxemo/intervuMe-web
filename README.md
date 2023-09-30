@@ -85,7 +85,7 @@ npm run dev
 - Step 8: Now you can freely chat realtime with mentor (test it with both side it works).
 - Step 9: To check the subscription options use the **demo card** information such as 4242424242424242 **DD/MM** 4242 **CVV** 424
 
-**⚠️ Addressing some problem that occour after deploying the site that is when you engaging in the video call for some reason you cant see your own video in the mini video box while you are atively streaming your video (But working perfectly fine in the local device). If you can find any solution to that feel free to connect me and let me know. Also in this deployed platform you cannot reload a page or go back using browser and mobile back key it will show 404 not found page since its a problem regarding the react router.**
+**⚠️ Addressing some problem that occour after deploying the site that is when you engaging in the video call for some reason you cant see your own video in the mini video box while you are atively streaming your video (But working perfectly fine in the local device). If you can find any solution to that feel free to connect me and let me know. Also in this deployed platform refreashing will show 404 page not fpund error since its a problem regarding the react router.**
 
 # Screenshots
 ## Dashboard
