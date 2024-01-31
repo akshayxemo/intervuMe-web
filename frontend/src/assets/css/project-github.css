@@ -1,0 +1,12 @@
+.project-github {
+  padding: 0.5rem 2rem;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.git-link {
+  color: yellow;
+}
